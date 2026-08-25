@@ -83,11 +83,12 @@ export default function Home() {
           </ol>
         </section>
 
-        <section className="cv-section" id="outputs"><div className="section-title-row"><h2>Intellectual Property & Standards</h2><span className="section-note">해외 등록 1 · 국내 등록 2 · 표준 1</span></div>
+        <section className="cv-section" id="outputs"><div className="section-title-row"><h2>Patents & Standards</h2><span className="section-note">미국 등록특허 1 · 국내 등록특허 2 · 국내 출원특허 1 · 표준 1</span></div>
           <ol className="credential-list">
-            <li><span className="credential-badge overseas">해외 등록</span><span className="credential-id">US11914720B2</span><div><a href="https://patents.google.com/patent/US11914720B2/en" target="_blank" rel="noreferrer">Method for verifying drone included in industrial Internet of Things system, by using Petri-net modeling ↗</a><small>미국 등록특허 · PCT/KR2019/095005 기반 미국 국내단계 등록</small></div></li>
-            <li><span className="credential-badge domestic">국내 등록</span><span className="credential-id">KR102491151B1</span><a href="https://doi.org/10.8080/1020210110719" target="_blank" rel="noreferrer">무인 항공기 보안 프로토콜 시스템 및 그 방법 ↗</a></li>
-            <li><span className="credential-badge domestic">국내 등록</span><span className="credential-id">KR102050230B1</span><a href="https://doi.org/10.8080/1020180075812" target="_blank" rel="noreferrer">페트리 넷 모델링을 이용한 산업용 사물 인터넷 시스템에 구비되는 드론의 검증방법 ↗</a></li>
+            <li><span className="credential-badge overseas">미국 등록특허</span><span className="credential-id">US11914720B2</span><div><a href="https://patents.google.com/patent/US11914720B2/en" target="_blank" rel="noreferrer">Method for verifying drone included in industrial Internet of Things system, by using Petri-net modeling ↗</a><small>PCT/KR2019/095005 기반 미국 국내단계 등록</small></div></li>
+            <li><span className="credential-badge domestic">국내 등록특허</span><span className="credential-id">KR102491151B1</span><a href="https://doi.org/10.8080/1020210110719" target="_blank" rel="noreferrer">무인 항공기 보안 프로토콜 시스템 및 그 방법 ↗</a></li>
+            <li><span className="credential-badge domestic">국내 등록특허</span><span className="credential-id">KR102050230B1</span><a href="https://doi.org/10.8080/1020180075812" target="_blank" rel="noreferrer">페트리 넷 모델링을 이용한 산업용 사물 인터넷 시스템에 구비되는 드론의 검증방법 ↗</a></li>
+            <li><span className="credential-badge pending">국내 출원특허</span><span className="credential-id">10-2025-0032876</span><div><strong>Hybrid Post Quantum Cryptography Based 5G Authentication Protocol</strong><small>대한민국</small></div></li>
             <li><span className="credential-badge standard">표준</span><span className="credential-id">TTAK.KO-12.0431</span><a href="https://committee.tta.or.kr/standard/standard.jsp?commit_code=PG503&firstDepthCode=TC5&nowPage=1&secondDepthCode=PG503&thirdDepthCode=null" target="_blank" rel="noreferrer">산업 전반에 적용되는 5G 특화망 보안 요구사항 ↗</a></li>
           </ol>
         </section>
