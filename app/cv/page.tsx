@@ -37,6 +37,8 @@ const projects = [
   ["2023–2025", "안전한 차세대 IoT 통신 환경 구축을 위한 양자내성암호 최적화 및 보안 프로토콜 적용 연구", "학생연구자"],
 ];
 
+const assetPrefix = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
+
 function PublicationList({ items }: { items: Publication[] }) {
   return <ol className="bibliography">{items.map((item, index) => <li key={item.title}>
     <span className="pub-index">{index + 1}.</span>
@@ -76,8 +78,8 @@ export default function Home() {
             <li><time>2025</time><span className="award-badge international">국제</span><div><h3>Best Special Session Paper Award</h3><a className="award-paper" href="https://di0zxmb8pwajl.cloudfront.net/kiisc/conference/mobisec2025/programbook/64.pdf" target="_blank" rel="noreferrer">A Hybrid EDHOC Protocol ↗</a><p>The 9th International Conference on Mobile Internet Security (MobiSec 2025) · Sapporo, Japan</p></div></li>
             <li><time>2025</time><span className="award-badge external">대외</span><div><h3>우수학생연구자상</h3><p>한국정보통신기술협회 (TTA)</p></div></li>
             <li><time>2024</time><span className="award-badge international">국제</span><div><h3>Best Student Paper Award</h3><a className="award-paper" href="https://doi.org/10.1007/978-981-97-8546-9_9" target="_blank" rel="noreferrer">Decentralized Real-Time IIoT Data Integrity Verification System and Its Comprehensive Analysis ↗</a><p>2nd International Conference on Data Security and Privacy Protection (DSPP 2024) · Xi&apos;an, China</p></div></li>
-            <li><time>2017</time><span className="award-badge external">대외</span><div><h3>우수논문상</h3><span className="award-paper">체내 이식형 의료기기를 위한 경량화 인증 프로토콜 설계 및 정형화 검증</span><p>The 5th Workshop on Convergent and Smart Media Systems (CSMS 2017) · Korean Institute of Smart Media</p></div></li>
-            <li><time>2017</time><span className="award-badge university">교내</span><div><h3>공과대학 학술제 은상</h3><p>순천향대학교 공과대학</p></div></li>
+            <li><time>2017</time><span className="award-badge external">대외</span><div><h3>우수논문상</h3><a className="award-paper" href={`${assetPrefix}/papers/lightweight-authentication-protocol-for-implantable-medical-devices.pdf`} target="_blank" rel="noreferrer">체내 이식형 의료기기를 위한 경량화 인증 프로토콜 설계 및 정형화 검증 ↗</a><p>The 5th Workshop on Convergent and Smart Media Systems (CSMS 2017) · Korean Institute of Smart Media</p></div></li>
+            <li><time>2017</time><span className="award-badge university">교내</span><div><h3>공과대학 학술제 은상</h3><a className="award-paper" href={`${assetPrefix}/papers/internet-router-firmware-update-vulnerability-analysis.pdf`} target="_blank" rel="noreferrer">인터넷 공유기 펌웨어 업데이트 취약점 분석 ↗</a><p>순천향대학교 공과대학</p></div></li>
           </ol>
         </section>
 
