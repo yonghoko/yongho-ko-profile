@@ -23,6 +23,26 @@ const journals: Publication[] = [
   { year:"2018", role:"Co-author", title:"Behavior and Vulnerability Assessment of Drones-Enabled Industrial Internet of Things (IIoT)", venue:"IEEE Access, 6, 43368–43383", href:"https://doi.org/10.1109/ACCESS.2018.2856368" },
 ];
 
+const journalQuartiles: Record<string, "Q1" | "Q2" | "Q3" | "Q4" | "Q1 Top 5%"> = {
+  "https://doi.org/10.1109/JIOT.2026.3678536": "Q1 Top 5%",
+  "https://doi.org/10.1109/TCE.2026.3686773": "Q1 Top 5%",
+  "https://doi.org/10.1109/MCE.2026.3723065": "Q2",
+  "https://doi.org/10.3390/s26154683": "Q2",
+  "https://doi.org/10.3390/app16010508": "Q2",
+  "https://doi.org/10.1109/TCE.2025.3647712": "Q1 Top 5%",
+  "https://doi.org/10.1016/j.aej.2025.12.049": "Q1 Top 5%",
+  "https://doi.org/10.4018/IJSWIS.379723": "Q1",
+  "https://doi.org/10.32604/cmes.2025.072611": "Q1",
+  "https://doi.org/10.3390/s25196144": "Q2",
+  "https://doi.org/10.3390/s24247979": "Q2",
+  "https://doi.org/10.3390/app14219726": "Q2",
+  "https://doi.org/10.3390/app142311152": "Q2",
+  "https://doi.org/10.3390/s23239504": "Q2",
+  "https://doi.org/10.3390/s21062057": "Q2",
+  "https://doi.org/10.3966/160792642020012101021": "Q3",
+  "https://doi.org/10.1109/ACCESS.2018.2856368": "Q2",
+};
+
 const conferences: Publication[] = [
   { year:"2025", role:"Co-author", title:"Formal Verification of Consumer Remote SIM Provisioning Common Mutual Authentication Using BAN Logic", venue:"IEEE ICCT-Pacific", href:"https://doi.org/10.1109/ICCT-Pacific63901.2025.11012784" },
   { year:"2024", role:"Co-author", title:"Formal Verification of 5GAKA-LCCO Protocol Supporting Forward Secrecy: Through Expanded BAN Logic", venue:"MobiSec 2024, CCIS 2095, 18–36", href:"https://doi.org/10.1007/978-981-97-4465-7_2" },
@@ -40,10 +60,13 @@ const projects = [
 const assetPrefix = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
 
 function PublicationList({ items }: { items: Publication[] }) {
-  return <ol className="bibliography">{items.map((item, index) => <li key={item.title}>
-    <span className="pub-index">{index + 1}.</span>
-    <div><a href={item.href} target="_blank" rel="noreferrer"><strong>{item.title}</strong></a><p><em>{item.venue}</em>, {item.year}. <span className="role">{item.role}</span></p></div>
-  </li>)}</ol>;
+  return <ol className="bibliography">{items.map((item, index) => {
+    const quartile = journalQuartiles[item.href];
+    return <li key={item.title}>
+      <span className="pub-index">{index + 1}.</span>
+      <div><a href={item.href} target="_blank" rel="noreferrer"><strong>{item.title}</strong></a><p><em>{item.venue}</em>, {item.year}. <span className="role">{item.role}</span>{quartile && <span className={`quartile-badge${quartile === "Q1 Top 5%" ? " top-five" : ""}`}>{quartile}</span>}</p></div>
+    </li>;
+  })}</ol>;
 }
 
 export default function Home() {
