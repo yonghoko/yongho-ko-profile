@@ -1,7 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
-import Link from "next/link";
 import { wines, type WineNote } from "../../data/wines";
+import { SiteHeader } from "../site-header";
 
 function parsedVintage(name:string){return name.match(/(?:19|20)\d{2}(?!.*\d)/)?.[0]||(/N\.V\./i.test(name)?"N.V.":null)}
 function Scale({value}:{value:number}){return <span className="wine-scale" aria-label={`5점 중 ${value}점`}>{[1,2,3,4,5].map(n=><i className={n<=value?"filled":""} key={n}/>)}</span>}
@@ -17,7 +17,7 @@ function WineDetail({wine,onClose}:{wine:WineNote,onClose:()=>void}){
     </div></div></div>
 }
 
-export default function WinePage(){const [selected,setSelected]=useState<WineNote|null>(null);return <main className="wine-page" id="top"><header className="topbar"><Link className="wordmark" href="/"><strong>Yong9</strong><small>MOBILE SECURITY RESEARCHER</small></Link><nav aria-label="Main navigation"><Link href="/">Home</Link><Link href="/cv">Academic CV</Link><Link href="/projects">Projects</Link><Link href="/wine">Wine Notes</Link></nav></header>
+export default function WinePage(){const [selected,setSelected]=useState<WineNote|null>(null);return <main className="wine-page" id="top"><SiteHeader />
   <section className="wine-head"><p className="overline">WINE TASTING ARCHIVE</p><h1>Wine Notes</h1><p>마신 와인의 사진과 테이스팅 노트를 모았습니다. 사진을 선택하면 상세 기록을 볼 수 있습니다.</p></section>
   <section className="wine-gallery">{wines.map((w,i)=><button className="wine-tile" key={w.slug} onClick={()=>setSelected(w)} aria-label={`${w.name} 정보 보기`}><img src={w.image} alt="" loading="lazy"/><span><b>{String(i+1).padStart(2,"0")}</b>{w.name}</span></button>)}</section>
   {selected&&<WineDetail wine={selected} onClose={()=>setSelected(null)}/>}

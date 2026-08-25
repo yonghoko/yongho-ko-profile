@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { SiteHeader } from "../site-header";
 
 type Publication = { year: string; title: string; venue: string; role: string; href: string };
 
@@ -45,7 +46,7 @@ function PublicationList({ items }: { items: Publication[] }) {
 
 export default function Home() {
   return <main id="top">
-    <header className="topbar"><Link className="wordmark" href="/"><strong>Yong9</strong><small>MOBILE SECURITY RESEARCHER</small></Link><nav aria-label="Main navigation"><Link href="/">Home</Link><Link href="/cv">Academic CV</Link><Link href="/projects">Projects</Link><Link href="/wine">Wine Notes</Link></nav></header>
+    <SiteHeader />
 
     <div className="cv-shell">
       <aside className="sidebar">

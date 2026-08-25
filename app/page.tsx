@@ -1,10 +1,11 @@
 import Link from "next/link";
+import { SiteHeader } from "./site-header";
 
 const areas = ["5G / 6G Security", "Authentication Protocols", "Formal Verification", "Post-Quantum Cryptography"];
 
 export default function Home() {
   return <main id="top">
-    <header className="topbar"><Link className="wordmark" href="/"><strong>Yong9</strong><small>MOBILE SECURITY RESEARCHER</small></Link><nav aria-label="Main navigation"><Link href="/">Home</Link><Link href="/cv">Academic CV</Link><Link href="/projects">Projects</Link><Link href="/wine">Wine Notes</Link></nav></header>
+    <SiteHeader />
     <section className="home-intro profile-intro">
       <div><p className="overline">RESEARCHER · MOBILE NETWORK SECURITY</p><h1>고용호 <span>Yongho Ko</span></h1><p className="position">Ph.D. Candidate · Kookmin University</p>
       <p className="summary">5G·6G 이동통신 보안을 중심으로 인증 및 키 합의 프로토콜, 형식 검증, 양자내성암호 전환을 연구합니다.</p>

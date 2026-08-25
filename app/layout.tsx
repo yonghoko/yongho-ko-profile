@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   description: "고용호의 연구 프로필, 학술 CV, 연구 프로젝트와 개인 와인 테이스팅 노트.",
   openGraph: { title: "Yongho Ko", description: "Research · Projects · Wine Notes", type: "website", url: siteUrl, images: [{ url: `${siteUrl}/og.png`, width: 1200, height: 630, alt: "Yongho Ko — Research, Projects and Wine Notes" }] },
   twitter: { card: "summary_large_image", title: "Yongho Ko", description: "Research · Projects · Wine Notes", images: [`${siteUrl}/og.png`] },
-  icons: { icon: `${siteUrl}/favicon.svg`, shortcut: `${siteUrl}/favicon.svg` },
+  icons: { icon: `${siteUrl}/logo.png`, shortcut: `${siteUrl}/logo.png`, apple: `${siteUrl}/logo.png` },
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {

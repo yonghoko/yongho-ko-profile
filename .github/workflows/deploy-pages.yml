@@ -34,6 +34,7 @@ jobs:
       - name: Build static site
         env:
           GITHUB_PAGES: "true"
+          NEXT_PUBLIC_BASE_PATH: /yongho-ko-profile
         run: npm run build:pages
 
       - name: Configure GitHub Pages
