@@ -18,7 +18,7 @@ function WineDetail({wine,onClose}:{wine:WineNote,onClose:()=>void}){
 }
 
 export default function WinePage(){const [selected,setSelected]=useState<WineNote|null>(null);return <main className="wine-page" id="top"><SiteHeader />
-  <section className="wine-head"><p className="overline">WINE TASTING ARCHIVE</p><h1>Wine Notes</h1><p>마신 와인의 사진과 테이스팅 노트를 모았습니다. 사진을 선택하면 상세 기록을 볼 수 있습니다.</p></section>
+  <section className="wine-head"><p className="overline">WINE TASTING ARCHIVE</p><h1>Wine Notes</h1><p>와인의 향과 맛, 인상 깊었던 순간을 담은 사진과 테이스팅 노트</p></section>
   <section className="wine-gallery">{wines.map((w,i)=><button className="wine-tile" key={w.slug} onClick={()=>setSelected(w)} aria-label={`${w.name} 정보 보기`}><img src={w.image} alt="" loading="lazy"/><span><b>{String(i+1).padStart(2,"0")}</b>{w.name}</span></button>)}</section>
   {selected&&<WineDetail wine={selected} onClose={()=>setSelected(null)}/>}
   <footer><span>Yongho Ko · Wine Notes</span><a href="#top">Back to top ↑</a></footer></main>}
