@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 type Publication = { year: string; title: string; venue: string; role: string; href: string };
 
 const journals: Publication[] = [
@@ -43,7 +45,7 @@ function PublicationList({ items }: { items: Publication[] }) {
 
 export default function Home() {
   return <main id="top">
-    <header className="topbar"><a className="wordmark" href="/"><strong>Yong9</strong><small>MOBILE SECURITY RESEARCHER</small></a><nav aria-label="Main navigation"><a href="/">Home</a><a href="/cv">Academic CV</a><a href="/projects">Projects</a><a href="/wine">Wine Notes</a></nav></header>
+    <header className="topbar"><Link className="wordmark" href="/"><strong>Yong9</strong><small>MOBILE SECURITY RESEARCHER</small></Link><nav aria-label="Main navigation"><Link href="/">Home</Link><Link href="/cv">Academic CV</Link><Link href="/projects">Projects</Link><Link href="/wine">Wine Notes</Link></nav></header>
 
     <div className="cv-shell">
       <aside className="sidebar">
@@ -66,7 +68,7 @@ export default function Home() {
         <section className="cv-section" id="publications"><div className="section-title-row"><h2>Journal Publications</h2><a href="https://scholar.google.co.kr/citations?user=dybtsxwAAAAJ" target="_blank" rel="noreferrer">Google Scholar에서 전체 보기 ↗</a></div><PublicationList items={journals} /></section>
         <section className="cv-section"><h2>Conference Publications</h2><PublicationList items={conferences} /></section>
 
-        <section className="cv-section" id="projects"><div className="section-title-row"><h2>Selected Research Projects</h2><a href="/projects">전체 프로젝트 이력 보기 →</a></div><div className="entries compact">{projects.map(([year,title,role]) => <div className="entry" key={title}><time>{year}</time><div><h3>{title}</h3><p>{role}</p></div></div>)}</div></section>
+        <section className="cv-section" id="projects"><div className="section-title-row"><h2>Selected Research Projects</h2><Link href="/projects">전체 프로젝트 이력 보기 →</Link></div><div className="entries compact">{projects.map(([year,title,role]) => <div className="entry" key={title}><time>{year}</time><div><h3>{title}</h3><p>{role}</p></div></div>)}</div></section>
 
         <section className="cv-section" id="awards"><div className="section-title-row"><h2>Awards & Honors</h2><span className="section-note">수상 2건</span></div>
           <ol className="award-list">

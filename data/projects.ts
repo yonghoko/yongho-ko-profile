@@ -1,4 +1,4 @@
-export type ResearchProject = { no:number; stage:string; pi:string; projectNo:string; title:string; funder:string; projectPeriod:string; participation:string; months:number; rate:number; role:string };
+export type ResearchProject = { no:number; stage:string; pi:string; projectNo:string|number; title:string; funder:string; projectPeriod:string; participation:string; months:number; rate:number; role:string };
 
 // Source: 연구 임용실적 (1).xlsx · 프로젝트 수행이력 (55 participation records)
 export const projects:ResearchProject[] = [
@@ -58,4 +58,3 @@ export const projects:ResearchProject[] = [
   { no:54, stage:"박사/국민대학교", pi:"이옥연", projectNo:"B2023-0005", title:"안전한 초연결사회를 위한 문제해결형 정보보안 교육연구단(4/8)", funder:"", projectPeriod:"2023.09.01~2024.02.29", participation:"2023.09~2024.02", months:6, rate:70, role:"학생연구자" },
   { no:55, stage:"박사/국민대학교", pi:"유일선", projectNo:"A2025-0114", title:"특화망·기업망 통합보안을 위한 5G 특화망 보안 기술개발", funder:"", projectPeriod:"2025.01.01~2025.12.31", participation:"2025.01~2025.12", months:12, rate:0, role:"학생연구자" }
 ];
-
