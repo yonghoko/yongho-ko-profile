@@ -66,7 +66,7 @@ export default function Home() {
 
         <section className="cv-section"><h2>Research Profile</h2><div className="research-columns"><div><h3>Mobile Network Authentication</h3><p>5G-AKA, EAP-AKA′, AKMA, RSP, N32 roaming 및 TLS 계열 프로토콜의 보안 분석과 개선.</p></div><div><h3>Formal Security Verification</h3><p>기밀성, 무결성, 상호 인증, 순방향 비밀성, 재전송 안전성 및 unlinkability 검증.</p></div><div><h3>Post-Quantum Migration</h3><p>PQC 및 하이브리드 ECDH∥KEM 구조의 보안성·성능·배포 제약 분석.</p></div></div></section>
 
-        <section className="cv-section" id="publications"><div className="section-title-row"><h2>Journal Publications</h2><a href="https://scholar.google.co.kr/citations?user=dybtsxwAAAAJ" target="_blank" rel="noreferrer">Google Scholar에서 전체 보기 ↗</a></div><PublicationList items={journals} /></section>
+        <section className="cv-section" id="publications"><div className="section-title-row"><h2>Journal Publications</h2><a href="https://scholar.google.co.kr/citations?user=dybtsxwAAAAJ" target="_blank" rel="noreferrer">Google Scholar에서 전체 보기 ↗</a></div><PublicationList items={journals} /><p className="under-review"><span>UNDER REVIEW</span> SCI(E) 논문 8편 심사 중</p></section>
         <section className="cv-section"><h2>Conference Publications</h2><PublicationList items={conferences} /></section>
 
         <section className="cv-section" id="projects"><div className="section-title-row"><h2>Selected Research Projects</h2><Link href="/projects">전체 프로젝트 이력 보기 →</Link></div><div className="entries compact">{projects.map(([year,title,role]) => <div className="entry" key={title}><time>{year}</time><div><h3>{title}</h3><p>{role}</p></div></div>)}</div></section>
