@@ -89,6 +89,8 @@ export default function Home() {
 
         <section className="cv-section" id="experience"><h2>Professional Experience</h2><div className="entries"><div className="entry experience-entry"><time>2020.06<br/>— 2023.08</time><div><span className="organization-type">PUBLIC ENTERPRISE</span><h3>제주국제자유도시개발센터 (JDC)</h3><p>대리 · 국토교통부 산하 공기업</p></div></div></div></section>
 
+        <section className="cv-section"><h2>Additional Experience</h2><div className="entries"><div className="entry"><time>2017</time><div><h3>순천향대학교 모바일 IoT 보안 학술동아리 회장</h3></div></div><div className="entry"><time>2013–2015</time><div><h3>국방부 국직CERT 정보보호병 (전문특기병)</h3></div></div><div className="entry"><time>2012–2013</time><div><h3>정보보호 전문가 교육훈련과정 수료</h3></div></div></div></section>
+
         <section className="cv-section"><h2>Research Profile</h2><div className="research-columns"><div><h3>Mobile Network Authentication</h3><p>5G-AKA, EAP-AKA′, AKMA, RSP, N32 roaming 및 TLS 계열 프로토콜의 보안 분석과 개선.</p></div><div><h3>Formal Security Verification</h3><p>기밀성, 무결성, 상호 인증, 순방향 비밀성, 재전송 안전성 및 unlinkability 검증.</p></div><div><h3>Post-Quantum Migration</h3><p>PQC 및 하이브리드 ECDH∥KEM 구조의 보안성·성능·배포 제약 분석.</p></div></div></section>
 
         <section className="cv-section" id="publications"><div className="section-title-row"><h2>Journal Publications</h2><a href="https://scholar.google.co.kr/citations?user=dybtsxwAAAAJ" target="_blank" rel="noreferrer">Google Scholar에서 전체 보기 ↗</a></div><PublicationList items={journals} /><p className="under-review"><span>UNDER REVIEW</span> SCI(E) 논문 8편 심사 중</p></section>
