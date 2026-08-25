@@ -71,9 +71,12 @@ export default function Home() {
 
         <section className="cv-section" id="projects"><div className="section-title-row"><h2>Selected Research Projects</h2><Link href="/projects">전체 프로젝트 이력 보기 →</Link></div><div className="entries compact">{projects.map(([year,title,role]) => <div className="entry" key={title}><time>{year}</time><div><h3>{title}</h3><p>{role}</p></div></div>)}</div></section>
 
-        <section className="cv-section" id="awards"><div className="section-title-row"><h2>Awards & Honors</h2><span className="section-note">수상 2건</span></div>
+        <section className="cv-section" id="awards"><div className="section-title-row"><h2>Honors & Awards</h2><span className="section-note">수상 5건</span></div>
           <ol className="award-list">
+            <li><time>2025</time><span className="award-badge international">국제</span><div><h3>Best Special Session Paper Award</h3><a className="award-paper" href="https://di0zxmb8pwajl.cloudfront.net/kiisc/conference/mobisec2025/programbook/64.pdf" target="_blank" rel="noreferrer">A Hybrid EDHOC Protocol ↗</a><p>The 9th International Conference on Mobile Internet Security (MobiSec 2025) · Sapporo, Japan</p></div></li>
             <li><time>2025</time><span className="award-badge external">대외</span><div><h3>우수학생연구자상</h3><p>한국정보통신기술협회 (TTA)</p></div></li>
+            <li><time>2024</time><span className="award-badge international">국제</span><div><h3>Best Student Paper Award</h3><a className="award-paper" href="https://doi.org/10.1007/978-981-97-8546-9_9" target="_blank" rel="noreferrer">Decentralized Real-Time IIoT Data Integrity Verification System and Its Comprehensive Analysis ↗</a><p>2nd International Conference on Data Security and Privacy Protection (DSPP 2024) · Xi&apos;an, China</p></div></li>
+            <li><time>2017</time><span className="award-badge external">대외</span><div><h3>Outstanding Paper Award</h3><p>5th CSMS (Convergent &amp; Smart Media Systems) Workshop · Korean Institute of Smart Media</p></div></li>
             <li><time>2017</time><span className="award-badge university">교내</span><div><h3>공과대학 학술제 은상</h3><p>순천향대학교 공과대학</p></div></li>
           </ol>
         </section>
