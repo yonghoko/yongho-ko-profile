@@ -77,7 +77,7 @@ export default function Home() {
       <aside className="sidebar">
         <img className="cv-photo" src="https://static.wixstatic.com/media/6e2229_56c12669c6f746fb91937a6916d22944~mv2.png/v1/fill/w_400,h_448,al_c,lg_1,q_90/6e2229_56c12669c6f746fb91937a6916d22944~mv2.png" alt="고용호 프로필 사진" />
         <p className="side-label">CONTACT</p>
-        <ul className="link-list"><li><a href="https://scholar.google.co.kr/citations?user=dybtsxwAAAAJ" target="_blank" rel="noreferrer">Google Scholar ↗</a></li><li><a href="https://github.com/yonghoko" target="_blank" rel="noreferrer">GitHub ↗</a></li><li><a href="https://github.com/yonghoko/ProVerif" target="_blank" rel="noreferrer">ProVerif Models ↗</a></li></ul>
+        <ul className="link-list"><li><a href="mailto:koyh0911@gmail.com">koyh0911@gmail.com ↗</a></li><li><a href="https://scholar.google.co.kr/citations?user=dybtsxwAAAAJ" target="_blank" rel="noreferrer">Google Scholar ↗</a></li><li><a href="https://github.com/yonghoko" target="_blank" rel="noreferrer">GitHub ↗</a></li><li><a href="https://github.com/yonghoko/ProVerif" target="_blank" rel="noreferrer">ProVerif Models ↗</a></li></ul>
         <p className="side-label">RESEARCH AREAS</p><ul className="plain-list"><li>5G / 6G Security</li><li>Authentication Protocols</li><li>Formal Verification</li><li>Post-Quantum Cryptography</li><li>eSIM & Roaming Security</li></ul>
         <p className="side-label">METHODS & TOOLS</p><ul className="plain-list"><li>ProVerif</li><li>AVISPA · Scyther</li><li>BAN · Expanded SVO</li><li>Security Benchmarking</li></ul>
       </aside>
