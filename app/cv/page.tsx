@@ -50,11 +50,11 @@ const conferences: Publication[] = [
 ];
 
 const projects = [
-  ["2026", "양자보안 기반 5G 특화망 기기 식별 기술 및 시험검증 기술 개발", "학생연구자"],
-  ["2024–2026", "특화망·기업망 통합보안을 위한 5G 특화망 보안 기술개발", "학생연구자"],
-  ["2024–2026", "5G 특화망을 위한 개방형 로밍 기술 개발", "학생연구자"],
-  ["2024–2026", "이동통신 및 AirGap 환경에서 스니핑 방지 기술 개발", "학생연구자"],
-  ["2023–2025", "안전한 차세대 IoT 통신 환경 구축을 위한 양자내성암호 최적화 및 보안 프로토콜 적용 연구", "학생연구자"],
+  ["2026", "양자보안 기반 5G 특화망 기기 식별 기술 및 시험검증 기술 개발"],
+  ["2024–2026", "특화망·기업망 통합보안을 위한 5G 특화망 보안 기술개발"],
+  ["2024–2026", "5G 특화망을 위한 개방형 로밍 기술 개발"],
+  ["2024–2026", "이동통신 및 AirGap 환경에서 스니핑 방지 기술 개발"],
+  ["2023–2025", "안전한 차세대 IoT 통신 환경 구축을 위한 양자내성암호 최적화 및 보안 프로토콜 적용 연구"],
 ];
 
 const assetPrefix = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
@@ -96,7 +96,7 @@ export default function Home() {
         <section className="cv-section" id="publications"><div className="section-title-row"><h2>SCI Journal Articles</h2><a href="https://scholar.google.co.kr/citations?user=dybtsxwAAAAJ" target="_blank" rel="noreferrer">Google Scholar에서 전체 보기 ↗</a></div><PublicationList items={journals} /><p className="under-review"><span>UNDER REVIEW</span> SCI(E) 논문 8편 심사 중</p></section>
         <section className="cv-section"><h2>SCOPUS Papers</h2><PublicationList items={conferences} /></section>
 
-        <section className="cv-section" id="projects"><div className="section-title-row"><h2>Selected Research Projects</h2><Link href="/projects">전체 프로젝트 이력 보기 →</Link></div><div className="entries compact">{projects.map(([year,title,role]) => <div className="entry" key={title}><time>{year}</time><div><h3>{title}</h3><p>{role}</p></div></div>)}</div></section>
+        <section className="cv-section" id="projects"><div className="section-title-row"><h2>Selected Research Projects</h2><Link href="/projects">전체 프로젝트 이력 보기 →</Link></div><div className="entries compact">{projects.map(([year,title]) => <div className="entry" key={title}><time>{year}</time><div><h3>{title}</h3></div></div>)}</div></section>
 
         <section className="cv-section" id="awards"><div className="section-title-row"><h2>Honors & Awards</h2><span className="section-note">수상 5건</span></div>
           <ol className="award-list">
