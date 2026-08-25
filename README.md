@@ -10,6 +10,7 @@ Yongho Ko의 개인 학술 프로필과 연구 이력, 프로젝트, Wine Notes�
 
 - `/` — Home
 - `/cv` — Academic CV
+- `/publications` — Conference Papers & Presentations
 - `/projects` — Projects
 - `/wine` — Wine Notes
 

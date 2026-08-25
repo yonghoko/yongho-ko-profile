@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { SiteHeader } from "../site-header";
+import { selectedConferencePublications } from "../../data/conference-publications";
 
 type Publication = { year: string; title: string; venue: string; role: string; href: string };
 
@@ -97,6 +98,7 @@ export default function Home() {
 
         <section className="cv-section" id="publications"><div className="section-title-row"><h2>SCI Journal Articles</h2><a href="https://scholar.google.co.kr/citations?user=dybtsxwAAAAJ" target="_blank" rel="noreferrer">Google Scholar에서 전체 보기 ↗</a></div><PublicationList items={journals} /><p className="under-review"><span>UNDER REVIEW</span> SCI(E) 논문 8편 심사 중</p></section>
         <section className="cv-section"><h2>SCOPUS Papers</h2><PublicationList items={conferences} /></section>
+        <section className="cv-section"><div className="section-title-row"><h2>Selected Conference Papers</h2><Link href="/publications">전체 목록 보기 →</Link></div><ol className="bibliography selected-conference-list">{selectedConferencePublications.map((item, index) => <li key={item.no}><span className="pub-index">{index + 1}.</span><div>{item.doi ? <a href={item.doi} target="_blank" rel="noreferrer"><strong>{item.title}</strong></a> : <strong>{item.title}</strong>}<p className="selected-authors">{item.authors}</p><p><em>{item.venue}</em>, {item.date.slice(0, 4)}. <span className="role">{item.role}</span></p></div></li>)}</ol></section>
 
         <section className="cv-section" id="projects"><div className="section-title-row"><h2>Selected Research Projects</h2><Link href="/projects">전체 프로젝트 이력 보기 →</Link></div><div className="entries compact">{projects.map(([year,title]) => <div className="entry" key={title}><time>{year}</time><div><h3>{title}</h3></div></div>)}</div></section>
 
