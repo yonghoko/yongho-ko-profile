@@ -10,7 +10,6 @@ export function SiteHeader() {
       <nav aria-label="Main navigation">
         <Link href="/">Home</Link>
         <Link href="/cv">Academic CV</Link>
-        <Link href="/publications">Publications</Link>
         <Link href="/projects">Projects</Link>
         <Link href="/wine">Wine Notes</Link>
       </nav>
