@@ -5,6 +5,7 @@ import { wines, type WineNote } from "../../data/wines";
 import { SiteHeader } from "../site-header";
 
 function parsedVintage(name:string){return name.match(/(?:19|20)\d{2}(?!.*\d)/)?.[0]||(/N\.V\./i.test(name)?"N.V.":null)}
+function normalizedName(name:string){return name.normalize("NFD").replace(/[\u0300-\u036f]/g,"").toLocaleLowerCase()}
 function Scale({value}:{value:number}){return <span className="wine-scale" aria-label={`5점 중 ${value}점`}>{[1,2,3,4,5].map(n=><i className={n<=value?"filled":""} key={n}/>)}</span>}
 
 function WineDetail({wine,onClose}:{wine:WineNote,onClose:()=>void}){
@@ -18,8 +19,20 @@ function WineDetail({wine,onClose}:{wine:WineNote,onClose:()=>void}){
     </div></div></div>
 }
 
-export default function WinePage(){const [selected,setSelected]=useState<WineNote|null>(null);return <main className="wine-page" id="top"><SiteHeader />
+export default function WinePage(){
+  const [selected,setSelected]=useState<WineNote|null>(null);
+  const [query,setQuery]=useState("");
+  const search=normalizedName(query.trim());
+  const visibleWines=wines.map((wine,index)=>({wine,index})).filter(({wine})=>!search||normalizedName(wine.name).includes(search));
+  return <main className="wine-page" id="top"><SiteHeader />
   <section className="wine-head"><p className="overline">WINE TASTING ARCHIVE</p><h1>Wine Notes</h1><p className="wine-intro-row">와인의 향과 맛, 인상 깊었던 순간을 담은 사진과 테이스팅 노트{" "}<Link href="/wine/beyond">그리고 약간의 일탈 →</Link></p></section>
-  <section className="wine-gallery">{wines.map((w,i)=><button className="wine-tile" key={w.slug} onClick={()=>setSelected(w)} aria-label={`${w.name} 정보 보기`}><img src={w.image} alt="" loading="lazy"/><span><b>{String(i+1).padStart(2,"0")}</b>{w.name}</span></button>)}</section>
+  <section className="wine-search" aria-label="와인 이름 검색">
+    <div className="wine-search-field"><label htmlFor="wine-name-search">Wine Search</label><div className="wine-search-control">
+      <input id="wine-name-search" type="search" value={query} onChange={e=>setQuery(e.target.value)} placeholder="와인 이름으로 검색" autoComplete="off"/>
+      {query&&<button className="wine-search-clear" type="button" onClick={()=>setQuery("")} aria-label="검색어 지우기">×</button>}
+    </div></div>
+    <p className="wine-search-count" aria-live="polite">{query.trim()?`${visibleWines.length}개 검색 결과`:`전체 ${wines.length}개`}</p>
+  </section>
+  <section className="wine-gallery">{visibleWines.length?visibleWines.map(({wine,index})=><button className="wine-tile" key={wine.slug} onClick={()=>setSelected(wine)} aria-label={`${wine.name} 정보 보기`}><img src={wine.image} alt="" loading="lazy"/><span><b>{String(index+1).padStart(2,"0")}</b>{wine.name}</span></button>):<p className="wine-search-empty">일치하는 와인 이름이 없습니다.</p>}</section>
   {selected&&<WineDetail wine={selected} onClose={()=>setSelected(null)}/>}
   <footer><span>Yongho Ko · Wine Notes</span><a href="#top">Back to top ↑</a></footer></main>}
