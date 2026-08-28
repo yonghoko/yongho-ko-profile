@@ -69,7 +69,7 @@ export const drinks: DrinkNote[] = [
     "niseko-tokubetsu-junmai",
     "Niseko Tokubetsu Junmai",
     "사케",
-    "스시 카운터에서 만난 홋카이도 특별순미주. 음식의 흐름을 끊지 않는 깔끔한 인상이 좋아 식사 장면과 함께 남겨 둔 한 병이다.",
+    "현지 오마카세에서 만난 홋카이도 특별순미주. 음식의 흐름을 끊지 않는 깔끔한 인상이 좋아 식사 장면과 함께 남겨 둔 한 병이다.",
   ),
   drink(
     "ezo-no-kuma",
