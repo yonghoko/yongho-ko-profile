@@ -1,5 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
+import Link from "next/link";
 import { wines, type WineNote } from "../../data/wines";
 import { SiteHeader } from "../site-header";
 
@@ -18,7 +19,7 @@ function WineDetail({wine,onClose}:{wine:WineNote,onClose:()=>void}){
 }
 
 export default function WinePage(){const [selected,setSelected]=useState<WineNote|null>(null);return <main className="wine-page" id="top"><SiteHeader />
-  <section className="wine-head"><p className="overline">WINE TASTING ARCHIVE</p><h1>Wine Notes</h1><p>와인의 향과 맛, 인상 깊었던 순간을 담은 사진과 테이스팅 노트</p></section>
+  <section className="wine-head"><p className="overline">WINE TASTING ARCHIVE</p><h1>Wine Notes</h1><p className="wine-intro-row"><span>와인의 향과 맛, 인상 깊었던 순간을 담은 사진과 테이스팅 노트</span><Link href="/wine/beyond">그리고 약간의 일탈 →</Link></p></section>
   <section className="wine-gallery">{wines.map((w,i)=><button className="wine-tile" key={w.slug} onClick={()=>setSelected(w)} aria-label={`${w.name} 정보 보기`}><img src={w.image} alt="" loading="lazy"/><span><b>{String(i+1).padStart(2,"0")}</b>{w.name}</span></button>)}</section>
   {selected&&<WineDetail wine={selected} onClose={()=>setSelected(null)}/>}
   <footer><span>Yongho Ko · Wine Notes</span><a href="#top">Back to top ↑</a></footer></main>}
