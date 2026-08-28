@@ -156,6 +156,12 @@ export const drinks: DrinkNote[] = [
     "부르의 버터비어. 이름만큼 강한 개성을 기대했지만 인위적인 느낌이 앞서 내 취향과는 거리가 있었다.",
   ),
   drink(
+    "sapporo-classic",
+    "Sapporo Classic",
+    "맥주",
+    "홋카이도에서만 만날 수 있는 삿포로 클래식. 내가 가장 좋아하는 인생 맥주이자, 양고기와 함께할 때 진가가 가장 선명해진다. 이 한 캔을 다시 마시기 위해 홋카이도로 향한다고 해도 과언이 아니다.",
+  ),
+  drink(
     "sapporo-premium-alcohol-free",
     "Sapporo Premium Alcohol Free",
     "무알코올 맥주",
