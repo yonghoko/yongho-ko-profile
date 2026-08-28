@@ -114,4 +114,5 @@ local("chateau-beauchene-cotes-du-rhone-2020","Château Beauchêne Grande Réser
 local("pf-champagne-brut","PF Champagne Brut",{country:"프랑스",region:"Champagne",grapes:["Champagne Blend"],price:"4-5만원",aromas:["청사과","시트러스","브리오슈","흰 꽃"],palate:"브뤼, 높은 산도, 섬세한 탄산감"}),
 local("little-beauty-sauvignon-blanc-2022","Little Beauty Sauvignon Blanc 2022",{vintage:2022,country:"뉴질랜드",region:"Marlborough",grapes:["Sauvignon Blanc"],price:"4-5만원",aromas:["망고","허니듀 멜론","레몬그라스","붉은 파프리카","미네랄"],palate:"드라이, 높은 산도"}),
 local("pulpoloco-sangria-crisp-white","Pulpoloco Sangria Crisp White",{country:"스페인",grapes:["White Wine Blend"],price:"1-2만원",aromas:["시트러스","오렌지","복숭아","생강","향신료"],palate:"약간 단맛, 적당한 산도"}),
+local("yoichi-wine-niagara","Yoichi Wine Niagara",{country:"일본",region:"Hokkaido · Yoichi",grapes:["Niagara"],price:"2-3만원",aromas:["청포도","머스캣","흰 꽃","시트러스"],palate:"달콤함, 적당한 산도, 풍부하고 산뜻한 과실감"}),
 ];
