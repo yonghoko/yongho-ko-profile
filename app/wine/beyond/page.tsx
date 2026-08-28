@@ -22,10 +22,7 @@ export default function BeyondWinePage() {
       </section>
       <section className="drink-grid" aria-label="와인 외 주류 기록">
         {drinks.map((entry, index) => (
-          <article
-            className={`drink-card${entry.slug === "beurre-butter-beer" ? " drink-card-contain" : ""}`}
-            key={entry.slug}
-          >
+          <article className="drink-card" key={entry.slug}>
             <img src={entry.image} alt={entry.name} loading="lazy" />
             <div className="drink-copy">
               <p className="drink-category">
