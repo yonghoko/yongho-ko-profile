@@ -6,7 +6,7 @@ type Publication = { year: string; title: string; venue: string; role: string; h
 
 const journals: Publication[] = [
   { year:"2026", role:"First Author", title:"5G-AKA-HPQC: Hybrid Post-Quantum Cryptography Protocol for Quantum-Resilient 5G Primary Authentication with Forward Secrecy", venue:"IEEE Internet of Things Journal, 13(12), 26977–27000", href:"https://doi.org/10.1109/JIOT.2026.3678536" },
-  { year:"2026", role:"First Author", title:"Toward a Stealth-Capable 5G-AKA: Secure Key Distribution with Covert Channel Integration for Future-Sensitive Military Applications", venue:"IEEE Transactions on Consumer Electronics, Early Access", href:"https://doi.org/10.1109/TCE.2026.3686773" },
+  { year:"2026", role:"First Author", title:"Toward a Stealth-Capable 5G-AKA: Secure Key Distribution with Covert Channel Integration for Future-Sensitive Military Applications", venue:"IEEE Transactions on Consumer Electronics, 72(3), 6214–6226", href:"https://doi.org/10.1109/TCE.2026.3686773" },
   { year:"2026", role:"First Author", title:"Inside 5G IoT Remote SIM Provisioning: Security Gaps and Efficiency Trade-offs", venue:"IEEE Consumer Electronics Magazine, Early Access", href:"https://doi.org/10.1109/MCE.2026.3723065" },
   { year:"2026", role:"Co-author", title:"Closing the HNDL Window in Consumer eSIM Provisioning: Hybrid Post-Quantum Migration, Formal Verification, and Deployment Constraints", venue:"Sensors, 26(15), 4683", href:"https://doi.org/10.3390/s26154683" },
   { year:"2026", role:"Co-author", title:"Towards 6G Roaming Security: Experimental Analysis of SUCI-based DoS, Cost, and NF Stress", venue:"Applied Sciences, 16(1), 508", href:"https://doi.org/10.3390/app16010508" },
