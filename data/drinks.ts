@@ -111,7 +111,7 @@ export const drinks: DrinkNote[] = [
     "damun-makgeolli",
     "Damun Makgeolli",
     "막걸리",
-    "우윳빛 병과 절제된 라벨이 먼저 눈에 들어온 다문 막걸리. 막걸리도 충분히 차분하고 세련되게 기록될 수 있다는 인상을 남겼다.",
+    "우윳빛 병과 절제된 라벨이 먼저 눈에 들어온 담은 막걸리. 막걸리도 충분히 차분하고 세련되게 기록될 수 있다는 인상을 남겼다.",
   ),
   drink(
     "won-soju-spirit",
