@@ -144,10 +144,10 @@ export const drinks: DrinkNote[] = [
     "여행지에서 마신 클래식 대만 맥주. 화려한 설명보다 현지 음식과 함께한 장면 자체가 기록의 중심인 한 캔.",
   ),
   drink(
-    "taiwan-beer-pineapple",
-    "Taiwan Beer Pineapple",
+    "taiwan-beer-18-days",
+    "Taiwan Beer Draft Beer — Only 18 Days",
     "맥주",
-    "파인애플 향을 더한 대만 과일맥주. 맥주라기보다 여행 중 한 번쯤 고르게 되는 달콤한 기분 전환에 가까웠다.",
+    "고온 살균을 거치지 않고 0–7°C로 냉장 유통해 생맥주의 신선함과 맥아 향을 살린 타이완 비어. 이름의 ‘18일’은 제조 후 유통기한이 단 18일뿐이라는 뜻이라, 여행지에서 만난 한 캔이 더 특별하게 남았다.",
   ),
   drink(
     "beurre-butter-beer",
