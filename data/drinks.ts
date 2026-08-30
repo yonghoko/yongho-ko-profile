@@ -129,7 +129,7 @@ export const drinks: DrinkNote[] = [
     "ellyeop-pyunjo",
     "Ellyeop-Pyunjoo",
     "전통주",
-    "검은색과 흰색으로 정리된 병이 인상적인 엽편주. 전통주의 이름과 패키지가 현대적으로 만난 장면을 남겼다.",
+    "검은색과 흰색으로 정리된 병이 인상적인 일엽편주. 전통주의 이름과 패키지가 현대적으로 만난 장면을 남겼다.",
   ),
   drink(
     "corsendonk-christmas-ale",
