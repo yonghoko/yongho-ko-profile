@@ -21,7 +21,7 @@ export default function PublicationsPage() {
 
       <section className="publication-archive" aria-label="Conference papers and presentations">
         {conferencePublications.map((item, index) => (
-          <article className="publication-record" key={item.no}>
+          <article className="publication-record" key={item.title}>
             <span className="publication-number">{String(index + 1).padStart(2, "0")}</span>
             <div>
               <div className="publication-meta">
