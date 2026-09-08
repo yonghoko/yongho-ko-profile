@@ -43,3 +43,22 @@ test("Dangin Fays keeps its existing photo and requested price range", () => {
   assert.equal(wine.price, "13-14만원");
   assert.equal(wine.image, "/wines/pf-champagne-brut.jpg");
 });
+
+test("every existing wine has three distinct food suggestions", () => {
+  const { wines } = loadData("wines");
+  assert.equal(wines.length, 104);
+  for (const wine of wines) {
+    assert.equal(wine.pairings?.length, 3, wine.name);
+    assert.equal(new Set(wine.pairings).size, 3, wine.name);
+    assert.ok(wine.pairings.every((food) => typeof food === "string" && food.trim()), wine.name);
+  }
+});
+
+test("pairings distinguish white Cabernet, sweet wines, and Chardonnay styles", () => {
+  const { wines } = loadData("wines");
+  const find = (name) => wines.find((wine) => wine.name === name).pairings;
+  assert.ok(find("Radacini Blanc de Cabernet 2020").includes("흰살생선 구이"));
+  assert.notDeepEqual(find("Bread & Butter Chardonnay 2020"), find("La Manufacture Chablis 2020"));
+  assert.notDeepEqual(find("Thomas Schmitt Kabinett Riesling 2020"), find("Thomas Schmitt Private Collection Riesling Dry 2020"));
+  assert.deepEqual(find("Dangin Fays Brut Luminous"), ["해산물 요리", "샐러드", "초밥"]);
+});
