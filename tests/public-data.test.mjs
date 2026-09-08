@@ -42,6 +42,9 @@ test("Dangin Fays keeps its existing photo and requested price range", () => {
   assert.ok(wine);
   assert.equal(wine.price, "13-14만원");
   assert.equal(wine.image, "/wines/pf-champagne-brut.jpg");
+  assert.equal(wine.producer, undefined);
+  assert.equal(wine.body, undefined);
+  assert.equal(wine.acidity, undefined);
 });
 
 test("every existing wine has three distinct food suggestions", () => {
