@@ -3,9 +3,9 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { wines, type WineNote } from "../../data/wines";
 import { SiteHeader } from "../site-header";
+import { foodShortcuts, matchesWine, type SearchMode } from "./search";
 
 function parsedVintage(name:string){return name.match(/(?:19|20)\d{2}(?!.*\d)/)?.[0]||(/N\.V\./i.test(name)?"N.V.":null)}
-function normalizedName(name:string){return name.normalize("NFD").replace(/[\u0300-\u036f]/g,"").toLocaleLowerCase()}
 function Scale({value}:{value:number}){return <span className="wine-scale" aria-label={`5점 중 ${value}점`}>{[1,2,3,4,5].map(n=><i className={n<=value?"filled":""} key={n}/>)}</span>}
 
 function WineDetail({wine,onClose,onPrevious,onNext,position,total}:{wine:WineNote,onClose:()=>void,onPrevious:()=>void,onNext:()=>void,position:number,total:number}){
@@ -22,9 +22,11 @@ function WineDetail({wine,onClose,onPrevious,onNext,position,total}:{wine:WineNo
 
 export default function WinePage(){
   const [selected,setSelected]=useState<WineNote|null>(null);
-  const [query,setQuery]=useState("");
-  const search=normalizedName(query.trim());
-  const visibleWines=wines.map((wine,index)=>({wine,index})).filter(({wine})=>!search||normalizedName(wine.name).includes(search));
+  const [mode,setMode]=useState<SearchMode>("name");
+  const [queries,setQueries]=useState({name:"",pairing:""});
+  const query=queries[mode];
+  const setQuery=(value:string)=>setQueries(previous=>({...previous,[mode]:value}));
+  const visibleWines=wines.map((wine,index)=>({wine,index})).filter(({wine})=>matchesWine(wine,query,mode));
   const selectedIndex=selected?visibleWines.findIndex(({wine})=>wine.slug===selected.slug):-1;
   const modalTotal=selectedIndex>=0?visibleWines.length:1;
   const modalPosition=selectedIndex>=0?selectedIndex+1:1;
@@ -34,13 +36,18 @@ export default function WinePage(){
   const moveWine=(step:number)=>{if(selectedIndex<0||visibleWines.length<2)return;const next=visibleWines[(selectedIndex+step+visibleWines.length)%visibleWines.length].wine;window.history.replaceState({...window.history.state,wineModalSlug:next.slug},"");setSelected(next)};
   return <main className="wine-page" id="top"><SiteHeader />
   <section className="wine-head"><p className="overline">WINE TASTING ARCHIVE</p><h1>Wine Notes</h1><p className="wine-intro-row">와인의 향과 맛, 인상 깊었던 순간을 담은 사진과 테이스팅 노트{" "}<Link href="/wine/beyond">그리고 약간의 일탈 →</Link></p></section>
-  <section className="wine-search" aria-label="와인 이름 검색">
-    <div className="wine-search-field"><label htmlFor="wine-name-search">Wine Search</label><div className="wine-search-control">
-      <input id="wine-name-search" type="search" value={query} onChange={e=>setQuery(e.target.value)} placeholder="와인 이름으로 검색" autoComplete="off"/>
+  <section className="wine-search" aria-label="와인 검색">
+    <div className="wine-search-modes" role="group" aria-label="검색 방식" data-mode={mode}>
+      <button type="button" aria-pressed={mode==="name"} onClick={()=>setMode("name")}>와인으로 찾기</button>
+      <button type="button" aria-pressed={mode==="pairing"} onClick={()=>setMode("pairing")}>음식과 맞추기</button>
+    </div>
+    <div className="wine-search-field"><div className="wine-search-control">
+      <svg className="wine-search-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 5 5"/></svg>
+      <input id="wine-name-search" aria-label={mode==="name"?"와인 이름 검색":"페어링 음식 검색"} type="search" value={query} onChange={e=>setQuery(e.target.value)} placeholder={mode==="name"?"와인 이름을 입력하세요":"어떤 음식과 함께 마실까요?"} autoComplete="off"/>
       {query&&<button className="wine-search-clear" type="button" onClick={()=>setQuery("")} aria-label="검색어 지우기">×</button>}
     </div></div>
-    <p className="wine-search-count" aria-live="polite">{query.trim()?`${visibleWines.length}개 검색 결과`:`전체 ${wines.length}개`}</p>
+    {mode==="pairing"&&<div className="wine-food-shortcuts" role="group" aria-label="음식 빠른 검색">{foodShortcuts.map(food=><button key={food} type="button" aria-pressed={query===food} onClick={()=>setQuery(query===food?"":food)}>{food}</button>)}</div>}
   </section>
-  <section className="wine-gallery">{visibleWines.length?visibleWines.map(({wine,index})=><button className="wine-tile" key={wine.slug} onClick={()=>openWine(wine)} aria-label={`${wine.name} 정보 보기`}><img src={wine.image} alt="" loading="lazy"/><span><b>{String(index+1).padStart(2,"0")}</b>{wine.name}</span></button>):<p className="wine-search-empty">일치하는 와인 이름이 없습니다.</p>}</section>
+  <section className="wine-gallery" aria-label="와인 목록">{visibleWines.map(({wine,index})=><button className="wine-tile" key={wine.slug} onClick={()=>openWine(wine)} aria-label={`${wine.name} 정보 보기`}><img src={wine.image} alt="" loading="lazy"/><span><b>{String(index+1).padStart(2,"0")}</b>{wine.name}</span></button>)}</section>
   {selected&&<WineDetail wine={selected} onClose={closeWine} onPrevious={()=>moveWine(-1)} onNext={()=>moveWine(1)} position={modalPosition} total={modalTotal}/>}
   <footer><span>Yongho Ko · Wine Notes</span><a href="#top">Back to top ↑</a></footer></main>}
