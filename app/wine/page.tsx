@@ -43,7 +43,7 @@ export default function WinePage(){
     </div>
     <div className="wine-search-field"><div className="wine-search-control">
       <svg className="wine-search-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 5 5"/></svg>
-      <input id="wine-name-search" aria-label={mode==="name"?"와인 이름 검색":"페어링 음식 검색"} type="search" value={query} onChange={e=>setQuery(e.target.value)} placeholder={mode==="name"?"와인 이름을 입력하세요":"어떤 음식과 함께 마실까요?"} autoComplete="off"/>
+      <input id="wine-name-search" aria-label={mode==="name"?"와인 이름 검색":"페어링 음식 검색"} type="search" value={query} onChange={e=>setQuery(e.target.value)} placeholder={mode==="name"?"와인 이름을 입력하세요":"어떤 음식과 함께 페어링할까요?"} autoComplete="off"/>
       {query&&<button className="wine-search-clear" type="button" onClick={()=>setQuery("")} aria-label="검색어 지우기">×</button>}
     </div></div>
     {mode==="pairing"&&<div className="wine-food-shortcuts" role="group" aria-label="음식 빠른 검색">{foodShortcuts.map(food=><button key={food} type="button" aria-pressed={query===food} onClick={()=>setQuery(query===food?"":food)}>{food}</button>)}</div>}
