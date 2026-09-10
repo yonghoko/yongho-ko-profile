@@ -49,6 +49,7 @@ footer{max-width:1240px;margin:0 auto;padding:25px 28px 45px;border-top:1px soli
 @media(max-width:520px){.award-list li{grid-template-columns:52px 54px 1fr;gap:10px}.award-list h3{font-size:13px}}
 
 /* Journal rankings */
+.cv-shell .role.first-author{background:#243B53;color:#fff}
 .quartile-badge{display:inline-block;font:700 8px Arial,sans-serif;letter-spacing:.03em;color:#535d66;background:#f2f4f5;border:1px solid #d5dade;border-radius:2px;padding:2px 5px;margin-left:5px;vertical-align:1px}.quartile-badge.top-five{color:#fff;background:var(--navy);border-color:var(--navy)}
 
 /* Conference papers and presentations */
