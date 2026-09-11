@@ -49,11 +49,25 @@ test("Dangin Fays keeps its existing photo and requested price range", () => {
 
 test("every existing wine has three distinct food suggestions", () => {
   const { wines } = loadData("wines");
-  assert.equal(wines.length, 104);
+  assert.equal(wines.length, 106);
   for (const wine of wines) {
     assert.equal(wine.pairings?.length, 3, wine.name);
     assert.equal(new Set(wine.pairings).size, 3, wine.name);
     assert.ok(wine.pairings.every((food) => typeof food === "string" && food.trim()), wine.name);
+  }
+});
+
+test("new photo entries preserve the requested vintages and personal reviews", () => {
+  const { wines } = loadData("wines");
+  for (const [slug, vintage, review] of [
+    ["slo-down-sexual-chocolate-2021", 2021, "풍부한 향에 그러지 못한 유지력"],
+    ["saint-estephe-de-calon-segur-2018", 2018, "내 마음은 늘 깔롱에 있소"],
+  ]) {
+    const entries = wines.filter(wine => wine.slug === slug);
+    assert.equal(entries.length, 1);
+    assert.equal(entries[0].vintage, vintage);
+    assert.equal(entries[0].oneLine, review);
+    assert.ok(readFileSync(new URL(`../public${entries[0].image}`, import.meta.url)).length > 0);
   }
 });
 
