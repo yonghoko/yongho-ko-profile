@@ -122,4 +122,9 @@ local("yoichi-wine-niagara","Yoichi Wine Niagara",{pairings:["복숭아 디저�
 local("slo-down-sexual-chocolate-2021","SLO Down Sexual Chocolate Red 2021",{vintage:2021,country:"미국",region:"California",grapes:["Syrah","Malbec","Zinfandel"],price:"4-5만원",aromas:["초콜릿","오크","바닐라","블랙베리","자두","체리"],palate:"풍부한 과실감, 실키하고 부드러운 질감",pairings:["소고기 스테이크","양갈비","로스트 치킨"],oneLine:"풍부한 향에 그러지 못한 유지력"}),
 // https://www.vivino.com/en/chateau-calon-segur-saint-estephe-de-calon-segur/w/6660921?year=2018
 local("saint-estephe-de-calon-segur-2018","Saint-Estèphe de Calon-Ségur 2018",{vintage:2018,country:"프랑스",region:"Bordeaux · Saint-Estèphe",grapes:["Cabernet Sauvignon","Cabernet Franc","Merlot","Petit Verdot"],price:"7-8만원",aromas:["블랙커런트","오크","담배","바닐라","가죽"],palate:"풀바디, 농축된 과실감과 탄닌감",pairings:["소고기 스테이크","양갈비","로스트 치킨"],oneLine:"내 마음은 늘 깔롱에 있소"}),
+// Sources checked 2026-09-26; vintage not visible on the supplied bottle.
+// https://www.vivino.com/en/steinmuhle-riesling-feinherb/w/8100336 (region, grape, pairings)
+// https://www.wine21.com/13_search/wine_view.html?Idx=155240 (peach/apricot, KRW 62,000)
+// https://business.veluga.kr/drink/16056/17031/ (citrus)
+local("steinmuhle-riesling-feinherb","Steinmühle Riesling Feinherb",{country:"독일",region:"Rheinhessen",grapes:["Riesling"],price:"6-7만원",aromas:["복숭아","살구","시트러스"],palate:"은은한 단맛, 산뜻한 산도와 과실감",pairings:["돼지고기 구이","새우구이","매콤한 닭고기 요리"]}),
 ];

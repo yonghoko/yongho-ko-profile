@@ -4,12 +4,12 @@ import test from "node:test";
 import vm from "node:vm";
 import ts from "typescript";
 
-function loadData(name) {
+function loadData(name, basePath = "") {
   const source = readFileSync(new URL(`../data/${name}.ts`, import.meta.url), "utf8");
   const { outputText } = ts.transpileModule(source, {
     compilerOptions: { module: ts.ModuleKind.CommonJS },
   });
-  const context = { exports: {}, process: { env: {} } };
+  const context = { exports: {}, process: { env: { NEXT_PUBLIC_BASE_PATH: basePath } } };
   vm.runInNewContext(outputText, context);
   return JSON.parse(JSON.stringify(context.exports));
 }
@@ -49,7 +49,7 @@ test("Dangin Fays keeps its existing photo and requested price range", () => {
 
 test("every existing wine has three distinct food suggestions", () => {
   const { wines } = loadData("wines");
-  assert.equal(wines.length, 106);
+  assert.equal(wines.length, 107);
   for (const wine of wines) {
     assert.equal(wine.pairings?.length, 3, wine.name);
     assert.equal(new Set(wine.pairings).size, 3, wine.name);
@@ -69,6 +69,29 @@ test("new photo entries preserve the requested vintages and personal reviews", (
     assert.equal(entries[0].oneLine, review);
     assert.ok(readFileSync(new URL(`../public${entries[0].image}`, import.meta.url)).length > 0);
   }
+});
+
+test("September additions use the supplied photos without duplicate sake or invented vintage/review", () => {
+  const { wines } = loadData("wines");
+  const wine = wines.find(item => item.slug === "steinmuhle-riesling-feinherb");
+  assert.ok(wine);
+  assert.equal(wine.vintage, undefined);
+  assert.equal(wine.oneLine, undefined);
+  assert.equal(wine.price, "6-7만원");
+  assert.ok(readFileSync(new URL(`../public${wine.image}`, import.meta.url)).length > 0);
+  const { drinks } = loadData("drinks");
+  assert.equal(new Set(drinks.map(item => item.slug)).size, drinks.length);
+  const jpgSlugs = new Set(["kubota-senju-ginjo", "kubota-junmai-daiginjo", "kubota-senju-junmai-ginjo"]);
+  const prefixedDrinks = loadData("drinks", "/yongho-ko-profile").drinks;
+  for (const slug of jpgSlugs) {
+    const matches = drinks.filter(item => item.slug === slug);
+    assert.equal(matches.length, 1);
+    assert.equal(matches[0].category, "사케");
+    assert.equal(matches[0].image, `/drinks/${slug}.jpg`);
+    assert.ok(readFileSync(new URL(`../public${matches[0].image}`, import.meta.url)).length > 0);
+    assert.equal(prefixedDrinks.find(item => item.slug === slug).image, `/yongho-ko-profile/drinks/${slug}.jpg`);
+  }
+  assert.ok(drinks.filter(item => !jpgSlugs.has(item.slug)).every(item => item.image.endsWith(".webp")));
 });
 
 test("pairings distinguish white Cabernet, sweet wines, and Chardonnay styles", () => {

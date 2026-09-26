@@ -6,15 +6,16 @@ export type DrinkNote = {
   image: string;
 };
 
-const image = (slug: string) =>
-  `${process.env.NEXT_PUBLIC_BASE_PATH ?? ""}/drinks/${slug}.webp`;
+const image = (slug: string, extension: "webp" | "jpg") =>
+  `${process.env.NEXT_PUBLIC_BASE_PATH ?? ""}/drinks/${slug}.${extension}`;
 
 const drink = (
   slug: string,
   name: string,
   category: string,
   description: string,
-): DrinkNote => ({ slug, name, category, description, image: image(slug) });
+  extension: "webp" | "jpg" = "webp",
+): DrinkNote => ({ slug, name, category, description, image: image(slug, extension) });
 
 export const drinks: DrinkNote[] = [
   drink(
@@ -94,6 +95,7 @@ export const drinks: DrinkNote[] = [
     "Kubota Senju Ginjo",
     "사케",
     "식사 자리에서 자연스럽게 비워진 쿠보타 센쥬 긴죠. 과장 없이 음식 곁에 머무는 사케의 역할을 보여준 한 병이다.",
+    "jpg",
   ),
   drink(
     "yakitori-junmai-ginjo",
@@ -178,5 +180,22 @@ export const drinks: DrinkNote[] = [
     "Chinggis Gold",
     "보드카",
     "몽골에서 만난 칭기스 골드 보드카. 투명한 술과 금빛 장식이 대비돼 여행 기념품처럼 선명하게 기억되는 병이다.",
+  ),
+  // Asahi-Shuzo sources checked 2026-09-26, including serving temperatures.
+  // https://www.asahi-shuzo.co.jp/global/en/products/kubota/junmaidaiginjo/
+  // https://www.asahi-shuzo.co.jp/global/en/products/kubota/senjyujunmaiginjo/
+  drink(
+    "kubota-junmai-daiginjo",
+    "Kubota Junmai Daiginjo",
+    "사케",
+    "니가타 아사히주조의 쿠보타 준마이다이긴죠. 배와 멜론을 떠올리게 하는 화사한 향에 부드러운 질감과 산미가 균형을 이룬다. 쌀을 50%까지 정미한 15도 사케로, 차갑게 마실 때 산뜻한 매력이 잘 드러난다.",
+    "jpg",
+  ),
+  drink(
+    "kubota-senju-junmai-ginjo",
+    "Kubota Senju Junmai Ginjo",
+    "사케",
+    "니가타 아사히주조의 쿠보타 센쥬 준마이긴죠. 은은하고 산뜻한 향에 쌀의 감칠맛, 부드럽고 드라이한 질감이 어우러진다. 차갑게 마시면 산미와 깔끔한 마무리가 돋보이며, 새우와 아스파라거스를 넣은 바질 파스타와도 잘 어울린다.",
+    "jpg",
   ),
 ];
