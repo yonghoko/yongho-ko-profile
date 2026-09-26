@@ -81,15 +81,16 @@ test("September additions use the supplied photos without duplicate sake or inve
   assert.ok(readFileSync(new URL(`../public${wine.image}`, import.meta.url)).length > 0);
   const { drinks } = loadData("drinks");
   assert.equal(new Set(drinks.map(item => item.slug)).size, drinks.length);
-  const jpgSlugs = new Set(["kubota-senju-ginjo", "kubota-junmai-daiginjo", "kubota-senju-junmai-ginjo"]);
+  const jpgSlugs = new Set(["kubota-junmai-daiginjo", "kubota-senju-junmai-ginjo"]);
   const prefixedDrinks = loadData("drinks", "/yongho-ko-profile").drinks;
-  for (const slug of jpgSlugs) {
+  for (const slug of ["kubota-senju-ginjo", ...jpgSlugs]) {
+    const extension = jpgSlugs.has(slug) ? "jpg" : "webp";
     const matches = drinks.filter(item => item.slug === slug);
     assert.equal(matches.length, 1);
     assert.equal(matches[0].category, "사케");
-    assert.equal(matches[0].image, `/drinks/${slug}.jpg`);
+    assert.equal(matches[0].image, `/drinks/${slug}.${extension}`);
     assert.ok(readFileSync(new URL(`../public${matches[0].image}`, import.meta.url)).length > 0);
-    assert.equal(prefixedDrinks.find(item => item.slug === slug).image, `/yongho-ko-profile/drinks/${slug}.jpg`);
+    assert.equal(prefixedDrinks.find(item => item.slug === slug).image, `/yongho-ko-profile/drinks/${slug}.${extension}`);
   }
   assert.ok(drinks.filter(item => !jpgSlugs.has(item.slug)).every(item => item.image.endsWith(".webp")));
 });

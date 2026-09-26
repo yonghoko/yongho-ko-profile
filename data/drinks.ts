@@ -95,7 +95,6 @@ export const drinks: DrinkNote[] = [
     "Kubota Senju Ginjo",
     "사케",
     "식사 자리에서 자연스럽게 비워진 쿠보타 센쥬 긴죠. 과장 없이 음식 곁에 머무는 사케의 역할을 보여준 한 병이다.",
-    "jpg",
   ),
   drink(
     "yakitori-junmai-ginjo",
