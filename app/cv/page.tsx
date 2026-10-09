@@ -116,8 +116,8 @@ export default function Home() {
           <ol className="credential-list">
             <li><span className="credential-badge overseas">미국 등록특허</span><span className="credential-id">US11914720B2</span><div><a href="https://patents.google.com/patent/US11914720B2/en" target="_blank" rel="noreferrer">Method for verifying drone included in industrial Internet of Things system, by using Petri-net modeling ↗</a></div></li>
             <li><span className="credential-badge domestic">국내 등록특허</span><span className="credential-id">KR102491151B1</span><a href="https://doi.org/10.8080/1020210110719" target="_blank" rel="noreferrer">무인 항공기 보안 프로토콜 시스템 및 그 방법 ↗</a></li>
-            <li><span className="credential-badge domestic">국내 등록특허</span><span className="credential-id">KR102050230B1</span><a href="https://doi.org/10.8080/1020180075812" target="_blank" rel="noreferrer">페트리 넷 모델링을 이용한 산업용 사물 인터넷 시스템에 구비되는 드론의 검증방법 ↗</a></li>
-            <li><span className="credential-badge pending">국내 출원특허</span><span className="credential-id">10-2025-0032876</span><div><strong>Hybrid Post Quantum Cryptography Based 5G Authentication Protocol</strong></div></li>
+            <li><span className="credential-badge domestic">국내 등록특허</span><span className="credential-id">KR102050230B1</span><a href="https://patents.google.com/patent/KR102050230B1/ko" target="_blank" rel="noreferrer">페트리 넷 모델링을 이용한 산업용 사물 인터넷 시스템에 구비되는 드론의 검증방법 ↗</a></li>
+            <li><span className="credential-badge pending">국내 출원특허</span><span className="credential-id">10-2025-0032876</span><a href="https://doi.org/10.8080/1020250032876" target="_blank" rel="noreferrer">하이브리드 양자내성암호 기반 순방향 비밀성 지원 통신 장치 및 방법 ↗</a></li>
             <li><span className="credential-badge standard">표준</span><span className="credential-id">TTAK.KO-12.0431</span><div><a href="https://committee.tta.or.kr/standard/standard.jsp?commit_code=PG503&firstDepthCode=TC5&nowPage=1&secondDepthCode=PG503&thirdDepthCode=null" target="_blank" rel="noreferrer">산업 전반에 적용되는 5G 특화망 보안 요구사항 ↗</a><small>TTA 올해의 우수표준 선정</small></div></li>
           </ol>
         </section>
