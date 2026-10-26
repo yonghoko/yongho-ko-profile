@@ -1,0 +1,41 @@
+export type Publication = { year: string; title: string; venue: string; role: string; href: string };
+
+export const journals: Publication[] = [
+  { year:"2026", role:"First Author", title:"5G-AKA-HPQC: Hybrid Postquantum Cryptography Protocol for Quantum-Resilient 5G Primary Authentication With Forward Secrecy", venue:"IEEE Internet of Things Journal, 13(12), 26977–27000", href:"https://doi.org/10.1109/JIOT.2026.3678536" },
+  { year:"2026", role:"First Author", title:"Toward a Stealth-Capable 5G-AKA: Secure Key Distribution With Covert Channel Integration for Future-Sensitive Military Applications", venue:"IEEE Transactions on Consumer Electronics, 72(3), 6214–6226, August", href:"https://doi.org/10.1109/TCE.2026.3686773" },
+  { year:"2026", role:"First Author", title:"Inside 5G IoT Remote SIM Provisioning: Security Gaps and Efficiency Trade-offs", venue:"IEEE Consumer Electronics Magazine, Early Access", href:"https://doi.org/10.1109/MCE.2026.3723065" },
+  { year:"2026", role:"Co-author", title:"Closing the HNDL Window in Consumer eSIM Provisioning: Hybrid Post-Quantum Migration, Formal Verification, and Deployment Constraints", venue:"Sensors, 26(15), 4683", href:"https://doi.org/10.3390/s26154683" },
+  { year:"2026", role:"Co-author", title:"Towards 6G Roaming Security: Experimental Analysis of SUCI-based DoS, Cost, and NF Stress", venue:"Applied Sciences, 16(1), 508", href:"https://doi.org/10.3390/app16010508" },
+  { year:"2026", role:"Co-author", title:"Toward Quantum-Safe 6G Mobile Networks: A Survey on EAP-AKA Prime Family with Formal Security Analysis and Empirical Evaluation", venue:"IEEE Transactions on Consumer Electronics, 72(1), 21–37", href:"https://doi.org/10.1109/TCE.2025.3647712" },
+  { year:"2026", role:"First Author", title:"Revisiting the M2M Remote SIM Provisioning Protocol: A Comprehensive Security and Performance Analysis", venue:"Alexandria Engineering Journal, 135, 1–19", href:"https://doi.org/10.1016/j.aej.2025.12.049" },
+  { year:"2025", role:"Co-author", title:"Semantic-Aware Security Protocol Design for 6G Non-Terrestrial Networks: A Formal Verification Approach", venue:"International Journal on Semantic Web and Information Systems, 21(1), 1–38", href:"https://doi.org/10.4018/IJSWIS.379723" },
+  { year:"2025", role:"Co-author", title:"Enhancing Roaming Security in Cloud-Native 5G Core Network Through Deep Learning-Based Intrusion Detection System", venue:"Computer Modeling in Engineering & Sciences, 145(2), 2733–2760", href:"https://doi.org/10.32604/cmes.2025.072611" },
+  { year:"2025", role:"Co-author", title:"Evaluating Transport Layer Security 1.3 Optimization Strategies for 5G Cross-Border Roaming: A Comprehensive Security and Performance Analysis", venue:"Sensors, 25(19), 6144", href:"https://doi.org/10.3390/s25196144" },
+  { year:"2024", role:"First Author", title:"Formal Security Reassessment of the 5G-AKA-FS Protocol: Methodological Corrections and Augmented Verification Techniques", venue:"Sensors, 24(24), 7979", href:"https://doi.org/10.3390/s24247979" },
+  { year:"2024", role:"Corresponding Author", title:"Mitigating Security Vulnerabilities in 6G Networks: A Comprehensive Analysis of the DMRN Protocol Using SVO Logic and ProVerif", venue:"Applied Sciences, 14(21), 9726", href:"https://doi.org/10.3390/app14219726" },
+  { year:"2024", role:"First Author", title:"Toward an Era of Secure 5G Convergence Applications: Formal Security Verification of 3GPP AKMA with TLS 1.3 PSK Option", venue:"Applied Sciences, 14(23), 11152", href:"https://doi.org/10.3390/app142311152" },
+  { year:"2023", role:"Co-author", title:"SMDFBS: Specification-Based Misbehavior Detection for False Base Stations", venue:"Sensors, 23(23), 9504", href:"https://doi.org/10.3390/s23239504" },
+  { year:"2021", role:"First Author", title:"Drone Secure Communication Protocol for Future Sensitive Applications in Military Zone", venue:"Sensors, 21(6), 2057", href:"https://doi.org/10.3390/s21062057" },
+  { year:"2020", role:"Co-author", title:"An Optimal Security Management Framework for Backhaul-Aware 5G-Vehicle to Everything (V2X)", venue:"Journal of Internet Technology, 21(1), 245–260", href:"https://doi.org/10.3966/160792642020012101021" },
+  { year:"2018", role:"Co-author", title:"Behavior and Vulnerability Assessment of Drones-Enabled Industrial Internet of Things (IIoT)", venue:"IEEE Access, 6, 43368–43383", href:"https://doi.org/10.1109/ACCESS.2018.2856368" },
+];
+
+export const journalQuartiles: Record<string, "Q1" | "Q2" | "Q3" | "Q4" | "Q1 Top 5%"> = {
+  "https://doi.org/10.1109/JIOT.2026.3678536": "Q1 Top 5%",
+  "https://doi.org/10.1109/TCE.2026.3686773": "Q1 Top 5%",
+  "https://doi.org/10.1109/MCE.2026.3723065": "Q2",
+  "https://doi.org/10.3390/s26154683": "Q2",
+  "https://doi.org/10.3390/app16010508": "Q2",
+  "https://doi.org/10.1109/TCE.2025.3647712": "Q1 Top 5%",
+  "https://doi.org/10.1016/j.aej.2025.12.049": "Q1 Top 5%",
+  "https://doi.org/10.4018/IJSWIS.379723": "Q1",
+  "https://doi.org/10.32604/cmes.2025.072611": "Q1",
+  "https://doi.org/10.3390/s25196144": "Q2",
+  "https://doi.org/10.3390/s24247979": "Q2",
+  "https://doi.org/10.3390/app14219726": "Q2",
+  "https://doi.org/10.3390/app142311152": "Q2",
+  "https://doi.org/10.3390/s23239504": "Q2",
+  "https://doi.org/10.3390/s21062057": "Q2",
+  "https://doi.org/10.3966/160792642020012101021": "Q3",
+  "https://doi.org/10.1109/ACCESS.2018.2856368": "Q2",
+};

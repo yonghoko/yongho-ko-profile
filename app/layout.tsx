@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 const siteUrl = "https://yonghoko.github.io/yongho-ko-profile";
+const assetPrefix = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
@@ -13,5 +14,12 @@ export const metadata: Metadata = {
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
-  return <html lang="ko"><body>{children}</body></html>;
+  return <html lang="ko">
+    <head>
+      {/* Bundled Noto Sans KR Variable + Newsreader Variable. The stylesheet uses
+          relative url()s, so it keeps resolving under a GitHub Pages basePath. */}
+      <link rel="stylesheet" href={`${assetPrefix}/fonts/fonts.css`} />
+    </head>
+    <body>{children}</body>
+  </html>;
 }

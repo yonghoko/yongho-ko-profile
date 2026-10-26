@@ -1,0 +1,5 @@
+/* Bundled web fonts for the editorial layout. Relative @import keeps these
+ * resolvable under a GitHub Pages basePath without rewriting any URL. */
+@import url("./noto-sans-kr/index.css");
+@import url("./newsreader/index.css");
+@import url("./newsreader/wght-italic.css");
