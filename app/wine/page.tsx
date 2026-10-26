@@ -52,12 +52,26 @@ export default function WinePage(){
   const selectedIndex=selected?visibleWines.findIndex(({wine})=>wine.slug===selected.slug):-1;
   const modalTotal=selectedIndex>=0?visibleWines.length:1;
   const modalPosition=selectedIndex>=0?selectedIndex+1:1;
-  useEffect(()=>{const sync=(state:unknown)=>{const slug=typeof state==="object"&&state!==null&&"wineModalSlug" in state?(state as {wineModalSlug?:string}).wineModalSlug:undefined;setSelected(slug?wines.find(wine=>wine.slug===slug)??null:null)};const pop=(event:PopStateEvent)=>sync(event.state);sync(window.history.state);window.addEventListener("popstate",pop);return()=>window.removeEventListener("popstate",pop)},[]);
+  useEffect(()=>{
+    const sync=(state:unknown)=>{const slug=typeof state==="object"&&state!==null&&"wineModalSlug" in state?(state as {wineModalSlug?:string}).wineModalSlug:undefined;setSelected(slug?wines.find(wine=>wine.slug===slug)??null:null)};
+    // A home-page photo opens its own note. Keep a clean list entry beneath
+    // the modal so Back closes the note before leaving the wine page.
+    const linkedWine=wines.find(wine=>`#${wine.slug}`===window.location.hash);
+    if(linkedWine&&!window.history.state?.wineModalSlug){
+      const state={...window.history.state};
+      const cleanUrl=window.location.pathname+window.location.search;
+      window.history.replaceState(state,"",cleanUrl);
+      window.history.pushState({...state,wineModalSlug:linkedWine.slug},"",`${cleanUrl}#${linkedWine.slug}`);
+    }
+    const pop=(event:PopStateEvent)=>sync(event.state);
+    sync(window.history.state);window.addEventListener("popstate",pop);
+    return()=>window.removeEventListener("popstate",pop);
+  },[]);
   // Returning from the modal (tap, Esc, or Android back) puts focus back on the tile that opened it.
   useEffect(()=>{if(selected)return;const opener=openerRef.current;openerRef.current=null;if(opener&&document.contains(opener))opener.focus()},[selected]);
   const openWine=(wine:WineNote,trigger:HTMLElement)=>{openerRef.current=trigger;window.history.pushState({...window.history.state,wineModalSlug:wine.slug},"");setSelected(wine)};
   const closeWine=()=>{if(window.history.state?.wineModalSlug)window.history.back();else setSelected(null)};
-  const moveWine=(step:number)=>{if(selectedIndex<0||visibleWines.length<2)return;const next=visibleWines[(selectedIndex+step+visibleWines.length)%visibleWines.length].wine;window.history.replaceState({...window.history.state,wineModalSlug:next.slug},"");setSelected(next)};
+  const moveWine=(step:number)=>{if(selectedIndex<0||visibleWines.length<2)return;const next=visibleWines[(selectedIndex+step+visibleWines.length)%visibleWines.length].wine;const nextUrl=window.location.hash?`${window.location.pathname}${window.location.search}#${next.slug}`:window.location.href;window.history.replaceState({...window.history.state,wineModalSlug:next.slug},"",nextUrl);setSelected(next)};
   return <main id="top"><SiteHeader />
   <div className="wrap" id="main-content" tabIndex={-1}>
     <header className="page-head">

@@ -5,6 +5,8 @@ import { JournalArticles, PublicationItem, type JournalArticle } from "./publica
 import { SectionNav, type CvSection } from "./section-nav";
 
 import { journals, journalQuartiles, type Publication } from "./publication-data";
+import { countLeadPublications } from "./publication-stats";
+import { selectedProjects as projects } from "../projects/selected-projects";
 
 const conferences: Publication[] = [
   { year:"2025", role:"Co-author", title:"Formal Verification of Consumer Remote SIM Provisioning Common Mutual Authentication Using BAN Logic", venue:"IEEE ICCT-Pacific", href:"https://doi.org/10.1109/ICCT-Pacific63901.2025.11012784" },
@@ -12,16 +14,8 @@ const conferences: Publication[] = [
   { year:"2024", role:"Co-author", title:"Decentralized Real-Time IIoT Data Integrity Verification System and Its Comprehensive Analysis", venue:"DSPP 2024, 156–164", href:"https://doi.org/10.1007/978-981-97-8546-9_9" },
 ];
 
-const projects = [
-  ["2026", "양자보안 기반 5G 특화망 기기 식별 기술 및 시험검증 기술 개발"],
-  ["2024–2026", "특화망·기업망 통합보안을 위한 5G 특화망 보안 기술개발"],
-  ["2024–2026", "5G 특화망을 위한 개방형 로밍 기술 개발"],
-  ["2024–2026", "이동통신 및 AirGap 환경에서 스니핑 방지 기술 개발"],
-  ["2023–2025", "안전한 차세대 IoT 통신 환경 구축을 위한 양자내성암호 최적화 및 보안 프로토콜 적용 연구"],
-];
-
 const metrics: [string, string][] = [
-  ["17", "SCI Journal Articles"],
+  [String(journals.length), "SCI Journal Articles"],
   ["3", "SCOPUS Papers"],
   ["55", "Research Projects"],
   ["3", "Granted Patents"],
@@ -73,7 +67,7 @@ export default function Home() {
         </div>
         <img className="cv-photo" src="https://static.wixstatic.com/media/6e2229_56c12669c6f746fb91937a6916d22944~mv2.png/v1/fill/w_400,h_448,al_c,lg_1,q_90/6e2229_56c12669c6f746fb91937a6916d22944~mv2.png" alt="고용호 프로필 사진" width={400} height={448} />
         <div className="tally">
-          <dl>{metrics.map(([value, label]) => <div key={label}><dt>{label}</dt><dd>{value}</dd></div>)}</dl>
+          <dl>{metrics.map(([value, label]) => <div key={label}><dt>{label}</dt><dd>{value}{label === "SCI Journal Articles" && <small className="tally-sub">주저자 {countLeadPublications(journals)}편</small>}</dd></div>)}</dl>
         </div>
       </header>
 

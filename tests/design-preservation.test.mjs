@@ -40,6 +40,47 @@ function escapeText(text) {
   return renderToStaticMarkup(React.createElement("span", null, String(text))).replace(/^<span>|<\/span>$/g, "");
 }
 
+test("lead-author totals include first and corresponding authors without double counting", () => {
+  const { journals } = loadModule("app/cv/publication-data.ts");
+  const { countLeadPublications, isLeadAuthor } = loadModule("app/cv/publication-stats.ts");
+  assert.equal(journals.length, 17);
+  assert.equal(countLeadPublications(journals), 8);
+  assert.equal(journals.filter(item => item.role === "First Author").length, 7);
+  assert.equal(journals.filter(item => item.role === "Corresponding Author").length, 1);
+  assert.equal(isLeadAuthor({ role: "First Author & Corresponding Author" }), true);
+  assert.equal(isLeadAuthor({ role: "Co-author" }), false);
+  assert.equal(countLeadPublications([
+    { href: "same-doi", role: "First Author" }, { href: "same-doi", role: "Corresponding Author" },
+  ]), 1);
+  const CV = loadModule("app/cv/page.tsx").default;
+  const html = renderToStaticMarkup(React.createElement(CV));
+  assert.ok(html.includes("주저자 8편"));
+  assert.ok(html.includes("주저자 <b>8</b>"));
+  assert.ok(html.includes("Corresponding Author"));
+});
+
+test("home preserves B timeline, contacts, research references and four current projects", () => {
+  const Home = loadModule("app/page.tsx").default;
+  const html = renderToStaticMarkup(React.createElement(Home));
+  assert.ok(html.includes("주저자 논문 8편 중 주요 연구 4편을 소개합니다."));
+  assert.ok(!html.includes("SCI 저널 논문 17편 가운데 제1저자 논문 4편."));
+  const timeline = html.match(/<ol class="path">([\s\S]*?)<\/ol>/)?.[1];
+  assert.ok(timeline);
+  assert.equal((timeline.match(/<li[ >]/g) || []).length, 6);
+  for (const text of ["국직CERT", "학사", "석사", "2017–2018", "제주국제자유도시개발센터", "사이버보안학과 박사과정"]) assert.ok(timeline.includes(text));
+  for (const href of ["mailto:koyh0911@gmail.com", "https://github.com/yonghoko/ProVerif", "https://doi.org/10.3390/app14219726"]) assert.ok(html.includes(`href="${href}"`));
+  const currentProjects = loadModule("data/projects.ts").projects.filter(item => item.years === "2026");
+  assert.equal(currentProjects.length, 4);
+  for (const item of currentProjects) assert.ok(html.includes(escapeText(item.title)));
+  assert.ok(html.includes('href="/wine#alpha-box-dice-apostle"'));
+  const ProjectsPage = loadModule("app/projects/page.tsx").default;
+  const projectHtml = renderToStaticMarkup(React.createElement(ProjectsPage));
+  const featured = projectHtml.match(/<ol class="selected-proj">([\s\S]*?)<\/ol>/)?.[1];
+  assert.ok(featured);
+  assert.equal((featured.match(/<li[ >]/g) || []).length, 5);
+  assert.ok(projectHtml.includes("55건 표시"));
+});
+
 test("Wine Notes renders the complete 107-wine collection and original image bindings", () => {
   const { wines } = loadModule("data/wines.ts");
   const Page = loadModule("app/wine/page.tsx").default;

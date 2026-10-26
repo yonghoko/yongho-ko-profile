@@ -2,6 +2,7 @@
 import { useState } from "react";
 import { projects } from "../../data/projects";
 import { SiteFooter, SiteHeader } from "../site-header";
+import { selectedProjects } from "./selected-projects";
 
 const groups = [
   { id:"doctoral", label:"박사 · 국민대학교", match:"박사/", count:28 },
@@ -42,6 +43,11 @@ export default function ProjectsPage() {
         <p className="lead">학사과정부터 박사과정까지 참여한 연구 프로젝트를 과정별로 기록했습니다. 동일 과제는 연차와 단계에 따라 각각의 참여 이력으로 구분했습니다.</p>
         <dl className="proj-summary">{summary.map(([label, value]) => <div key={label}><dt>{label}</dt><dd>{value}</dd></div>)}</dl>
       </header>
+
+      <section className="split" aria-labelledby="selected-h">
+        <div className="split-head"><h2 id="selected-h">주요 과제<span className="serif" lang="en">Selected</span></h2><p>CV에 수록된 박사과정 대표 과제 {selectedProjects.length}건.</p></div>
+        <ol className="selected-proj">{selectedProjects.map(([years, title]) => <li key={title}><time>{years}</time><span>{title}</span></li>)}</ol>
+      </section>
 
       <section className="split" aria-labelledby="records-h">
         <div className="split-head">
