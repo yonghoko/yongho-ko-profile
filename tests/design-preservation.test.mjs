@@ -105,6 +105,8 @@ test("home research threads feature three distinct non-MDPI lead-author top-rank
   const html = renderToStaticMarkup(React.createElement(Home));
   const threads = html.match(/<ol class="threads">([\s\S]*?)<\/ol>/)?.[1];
   assert.ok(threads);
+  assert.ok(!threads.includes("모델 공개"));
+  assert.ok(!threads.includes("https://github.com/yonghoko/ProVerif"));
   const links = [...threads.matchAll(/href="(https:\/\/doi\.org\/[^"\s]+)"/g)].map(match => match[1]);
   assert.deepEqual(links, [
     "https://doi.org/10.1109/TCE.2026.3686773",
