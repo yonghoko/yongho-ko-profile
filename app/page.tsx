@@ -10,9 +10,9 @@ const areas = ["5G / 6G Security", "Authentication Protocols", "Formal Verificat
 const selectedDois = ["10.1109/JIOT.2026.3678536", "10.1109/TCE.2026.3686773", "10.1016/j.aej.2025.12.049", "10.3390/s24247979"];
 const selectedPapers = selectedDois.flatMap(doi => journals.filter(item => item.href === `https://doi.org/${doi}`));
 const researchThreads = [
-  { title: "이동통신 인증", english: "Mobile Network Authentication", description: "5G-AKA, EAP-AKA′, AKMA, RSP, N32 roaming 및 TLS 계열 프로토콜의 보안 분석과 개선.", doi: "10.3390/app142311152", paper: "3GPP AKMA with TLS 1.3 PSK Option", venue: "Applied Sciences, 2024" },
-  { title: "정형화 보안 검증", english: "Formal Security Verification", description: "기밀성, 무결성, 상호 인증, 순방향 비밀성, 재전송 안전성 및 unlinkability 검증. ProVerif, AVISPA · Scyther, BAN · Expanded SVO.", doi: "10.3390/app14219726", paper: "DMRN Protocol Using SVO Logic and ProVerif", venue: "Applied Sciences, 2024", models: true },
-  { title: "양자내성 전환", english: "Post-Quantum Migration", description: "PQC 및 하이브리드 ECDH∥KEM 구조의 보안성·성능·배포 제약 분석.", doi: "10.3390/s26154683", paper: "Closing the HNDL Window in Consumer eSIM Provisioning", venue: "Sensors, 2026" },
+  { title: "이동통신 인증", english: "Mobile Network Authentication", description: "5G-AKA, EAP-AKA′, AKMA, RSP, N32 roaming 및 TLS 계열 프로토콜의 보안 분석과 개선.", doi: "10.1109/TCE.2026.3686773", paper: "Toward a Stealth-Capable 5G-AKA", venue: "IEEE Transactions on Consumer Electronics, 2026" },
+  { title: "정형화 보안 검증", english: "Formal Security Verification", description: "기밀성, 무결성, 상호 인증, 순방향 비밀성, 재전송 안전성 및 unlinkability 검증. ProVerif, AVISPA · Scyther, BAN · Expanded SVO.", doi: "10.1016/j.aej.2025.12.049", paper: "Revisiting the M2M Remote SIM Provisioning Protocol", venue: "Alexandria Engineering Journal, 2026", models: true },
+  { title: "양자내성 전환", english: "Post-Quantum Migration", description: "PQC 및 하이브리드 ECDH∥KEM 구조의 보안성·성능·배포 제약 분석.", doi: "10.1109/JIOT.2026.3678536", paper: "5G-AKA-HPQC", venue: "IEEE Internet of Things Journal, 2026" },
 ];
 const projects2026 = projects.filter(project => project.years === "2026");
 

@@ -68,7 +68,7 @@ test("home preserves B timeline, contacts, research references and four current 
   assert.ok(timeline);
   assert.equal((timeline.match(/<li[ >]/g) || []).length, 6);
   for (const text of ["국직CERT", "학사", "석사", "2017–2018", "제주국제자유도시개발센터", "사이버보안학과 박사과정"]) assert.ok(timeline.includes(text));
-  for (const href of ["mailto:koyh0911@gmail.com", "https://github.com/yonghoko/ProVerif", "https://doi.org/10.3390/app14219726"]) assert.ok(html.includes(`href="${href}"`));
+  for (const href of ["mailto:koyh0911@gmail.com", "https://github.com/yonghoko/ProVerif"]) assert.ok(html.includes(`href="${href}"`));
   const currentProjects = loadModule("data/projects.ts").projects.filter(item => item.years === "2026");
   assert.equal(currentProjects.length, 4);
   for (const item of currentProjects) assert.ok(html.includes(escapeText(item.title)));
@@ -79,6 +79,27 @@ test("home preserves B timeline, contacts, research references and four current 
   assert.ok(featured);
   assert.equal((featured.match(/<li[ >]/g) || []).length, 5);
   assert.ok(projectHtml.includes("55건 표시"));
+});
+
+test("home research threads feature three distinct non-MDPI lead-author top-ranked papers", () => {
+  const Home = loadModule("app/page.tsx").default;
+  const { journals, journalQuartiles } = loadModule("app/cv/publication-data.ts");
+  const { isLeadAuthor } = loadModule("app/cv/publication-stats.ts");
+  const html = renderToStaticMarkup(React.createElement(Home));
+  const threads = html.match(/<ol class="threads">([\s\S]*?)<\/ol>/)?.[1];
+  assert.ok(threads);
+  const links = [...threads.matchAll(/href="(https:\/\/doi\.org\/[^"\s]+)"/g)].map(match => match[1]);
+  assert.deepEqual(links, [
+    "https://doi.org/10.1109/TCE.2026.3686773",
+    "https://doi.org/10.1016/j.aej.2025.12.049",
+    "https://doi.org/10.1109/JIOT.2026.3678536",
+  ]);
+  for (const href of links) {
+    const publication = journals.find(item => item.href === href);
+    assert.ok(publication && isLeadAuthor(publication));
+    assert.equal(journalQuartiles[href], "Q1 Top 5%");
+    assert.ok(!href.includes("10.3390/"));
+  }
 });
 
 test("Wine Notes renders the complete 107-wine collection and original image bindings", () => {
