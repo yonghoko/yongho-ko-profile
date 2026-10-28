@@ -7,7 +7,7 @@ import { countLeadPublications } from "./cv/publication-stats";
 import { projects } from "../data/projects";
 
 const areas = ["5G / 6G Security", "Authentication Protocols", "Formal Verification", "Post-Quantum Cryptography"];
-const selectedDois = ["10.1109/JIOT.2026.3678536", "10.1109/TCE.2026.3686773", "10.1016/j.aej.2025.12.049", "10.3390/s24247979"];
+const selectedDois = ["10.1109/JIOT.2026.3678536", "10.1109/TCE.2026.3686773", "10.1016/j.aej.2025.12.049", "10.1109/MCE.2026.3723065"];
 const selectedPapers = selectedDois.flatMap(doi => journals.filter(item => item.href === `https://doi.org/${doi}`));
 const researchThreads = [
   { title: "이동통신 인증", english: "Mobile Network Authentication", description: "5G-AKA, EAP-AKA′, AKMA, RSP, N32 roaming 및 TLS 계열 프로토콜의 보안 분석과 개선.", doi: "10.1109/TCE.2026.3686773", paper: "Toward a Stealth-Capable 5G-AKA", venue: "IEEE Transactions on Consumer Electronics, 2026" },

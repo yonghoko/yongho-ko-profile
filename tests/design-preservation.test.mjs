@@ -81,6 +81,23 @@ test("home preserves B timeline, contacts, research references and four current 
   assert.ok(projectHtml.includes("55건 표시"));
 });
 
+test("home selected papers retain the first three and feature the lead-authored IEEE magazine fourth", () => {
+  const { default: Home, selectedPapers } = loadModule("app/page.tsx", "\nexport { selectedPapers };");
+  assert.deepEqual(Array.from(selectedPapers, item => item.href), [
+    "https://doi.org/10.1109/JIOT.2026.3678536",
+    "https://doi.org/10.1109/TCE.2026.3686773",
+    "https://doi.org/10.1016/j.aej.2025.12.049",
+    "https://doi.org/10.1109/MCE.2026.3723065",
+  ]);
+  assert.ok(selectedPapers.every(item => item.role === "First Author"));
+  const html = renderToStaticMarkup(React.createElement(Home));
+  assert.ok(html.includes(escapeText(selectedPapers[3].title)));
+  assert.ok(html.includes("IEEE Consumer Electronics Magazine, Early Access"));
+  assert.ok(!html.includes("https://doi.org/10.3390/s24247979"));
+  const CV = loadModule("app/cv/page.tsx").default;
+  assert.ok(renderToStaticMarkup(React.createElement(CV)).includes("https://doi.org/10.3390/s24247979"));
+});
+
 test("home research threads feature three distinct non-MDPI lead-author top-ranked papers", () => {
   const Home = loadModule("app/page.tsx").default;
   const { journals, journalQuartiles } = loadModule("app/cv/publication-data.ts");
