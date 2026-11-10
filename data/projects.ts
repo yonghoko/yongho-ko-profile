@@ -55,5 +55,8 @@ export const projects:ResearchProject[] = [
   { no:52, stage:"박사/국민대학교", title:"안전한 차세대 IoT 통신 환경 구축을 위한 양자내성암호 최적화 및 보안 프로토콜 적용 연구", years:"2023 ~ 2024" },
   { no:53, stage:"박사/국민대학교", title:"안전한 초연결사회를 위한 문제해결형 정보보안 교육연구단(5/8)", years:"2024 ~ 2025" },
   { no:54, stage:"박사/국민대학교", title:"안전한 초연결사회를 위한 문제해결형 정보보안 교육연구단(4/8)", years:"2023 ~ 2024" },
-  { no:55, stage:"박사/국민대학교", title:"특화망·기업망 통합보안을 위한 5G 특화망 보안 기술개발", years:"2025" }
+  { no:55, stage:"박사/국민대학교", title:"특화망·기업망 통합보안을 위한 5G 특화망 보안 기술개발", years:"2025" },
+  { no:56, stage:"박사/국민대학교", title:"HORIZON-CL4-2027-04-DATA-08 과제 제안서 제출을 위한 한-EU 컨소시엄 구축 및 공동 연구 기반 조성", years:"2026 ~ 2027" },
+  { no:57, stage:"박사/국민대학교", title:"Quantum computing European Union-South Korea Working Team", years:"2026 ~ 2027" },
+  { no:58, stage:"박사/국민대학교", title:"5G 특화망 모바일코어 로그 데이터 수집 방안 연구", years:"2026" }
 ];

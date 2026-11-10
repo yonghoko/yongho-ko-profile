@@ -59,7 +59,7 @@ test("lead-author totals include first and corresponding authors without double 
   assert.ok(html.includes("Corresponding Author"));
 });
 
-test("home preserves B timeline, contacts, research references and four current projects", () => {
+test("home preserves B timeline, contacts, research references and all seven 2026 projects", () => {
   const Home = loadModule("app/page.tsx").default;
   const html = renderToStaticMarkup(React.createElement(Home));
   assert.ok(html.includes("주저자 논문 8편 중 주요 연구 4편을 소개합니다."));
@@ -69,8 +69,11 @@ test("home preserves B timeline, contacts, research references and four current 
   assert.equal((timeline.match(/<li[ >]/g) || []).length, 6);
   for (const text of ["국직CERT", "학사", "석사", "2017–2018", "제주국제자유도시개발센터", "사이버보안학과 박사과정"]) assert.ok(timeline.includes(text));
   for (const href of ["mailto:koyh0911@gmail.com", "https://github.com/yonghoko/ProVerif"]) assert.ok(html.includes(`href="${href}"`));
-  const currentProjects = loadModule("data/projects.ts").projects.filter(item => item.years === "2026");
-  assert.equal(currentProjects.length, 4);
+  const currentProjects = loadModule("data/projects.ts").projects.filter(item => {
+    const [start, end = start] = item.years.split(" ~ ").map(Number);
+    return start <= 2026 && 2026 <= end;
+  });
+  assert.equal(currentProjects.length, 7);
   for (const item of currentProjects) assert.ok(html.includes(escapeText(item.title)));
   assert.ok(html.includes('href="/wine#alpha-box-dice-apostle"'));
   const ProjectsPage = loadModule("app/projects/page.tsx").default;
@@ -78,7 +81,14 @@ test("home preserves B timeline, contacts, research references and four current 
   const featured = projectHtml.match(/<ol class="selected-proj">([\s\S]*?)<\/ol>/)?.[1];
   assert.ok(featured);
   assert.equal((featured.match(/<li[ >]/g) || []).length, 5);
-  assert.ok(projectHtml.includes("55건 표시"));
+  assert.ok(projectHtml.includes("58건 표시"));
+  assert.ok(projectHtml.includes("전체 참여 이력 58건"));
+  assert.ok(projectHtml.includes("2016–2027"));
+  assert.ok(projectHtml.includes("박사 · 국민대학교 <b>31</b>"));
+  assert.ok(projectHtml.includes("2024–2026</time><span>양자보안 기반"));
+  const CV = loadModule("app/cv/page.tsx").default;
+  const cvHtml = renderToStaticMarkup(React.createElement(CV));
+  for (const page of [html, cvHtml]) assert.ok(page.includes("<dt>Research Projects</dt><dd>58</dd>"));
 });
 
 test("home selected papers retain the first three and feature the lead-authored IEEE magazine fourth", () => {

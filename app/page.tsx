@@ -14,12 +14,15 @@ const researchThreads = [
   { title: "정형화 보안 검증", english: "Formal Security Verification", description: "기밀성, 무결성, 상호 인증, 순방향 비밀성, 재전송 안전성 및 unlinkability 검증. ProVerif, AVISPA · Scyther, BAN · Expanded SVO.", doi: "10.1016/j.aej.2025.12.049", paper: "Revisiting the M2M Remote SIM Provisioning Protocol", venue: "Alexandria Engineering Journal, 2026" },
   { title: "양자내성 전환", english: "Post-Quantum Migration", description: "PQC 및 하이브리드 ECDH∥KEM 구조의 보안성·성능·배포 제약 분석.", doi: "10.1109/JIOT.2026.3678536", paper: "5G-AKA-HPQC", venue: "IEEE Internet of Things Journal, 2026" },
 ];
-const projects2026 = projects.filter(project => project.years === "2026");
+const projects2026 = projects.filter(project => {
+  const [start, end = start] = project.years.split(" ~ ").map(Number);
+  return start <= 2026 && 2026 <= end;
+});
 
 const tally: [string, string][] = [
   [String(journals.length), "SCI Articles"],
   ["3", "SCOPUS Papers"],
-  ["55", "Research Projects"],
+  [String(projects.length), "Research Projects"],
   ["3", "Patents"],
   ["1", "Standard"],
 ];

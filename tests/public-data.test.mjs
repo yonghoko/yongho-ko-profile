@@ -16,13 +16,13 @@ function loadData(name, basePath = "") {
 
 test("projects contain only public display fields and year-level periods", () => {
   const { projects } = loadData("projects");
-  assert.equal(projects.length, 55);
+  assert.equal(projects.length, 58);
   for (const project of projects) {
     assert.deepEqual(Object.keys(project).sort(), ["no", "stage", "title", "years"]);
     assert.match(project.years, /^\d{4}( ~ \d{4})?$/);
   }
-  assert.equal(new Set(projects.map((project) => project.no)).size, 55);
-  assert.equal(projects.filter((project) => project.stage.startsWith("박사/")).length, 28);
+  assert.equal(new Set(projects.map((project) => project.no)).size, 58);
+  assert.equal(projects.filter((project) => project.stage.startsWith("박사/")).length, 31);
   assert.equal(projects.filter((project) => project.stage.startsWith("석사/")).length, 18);
   assert.equal(projects.filter((project) => project.stage.startsWith("학사/")).length, 9);
 });

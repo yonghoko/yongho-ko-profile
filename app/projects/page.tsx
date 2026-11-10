@@ -5,15 +5,15 @@ import { SiteFooter, SiteHeader } from "../site-header";
 import { selectedProjects } from "./selected-projects";
 
 const groups = [
-  { id:"doctoral", label:"박사 · 국민대학교", match:"박사/", count:28 },
-  { id:"masters", label:"석사 · 순천향대학교", match:"석사/", count:18 },
-  { id:"undergraduate", label:"학사 · 순천향대학교", match:"학사/", count:9 },
+  { id:"doctoral", label:"박사 · 국민대학교", match:"박사/" },
+  { id:"masters", label:"석사 · 순천향대학교", match:"석사/" },
+  { id:"undergraduate", label:"학사 · 순천향대학교", match:"학사/" },
 ];
 
 const summary: [string, string][] = [
-  ["참여 이력", "55"],
-  ["연구 과제", "35"],
-  ["참여 기간", "2016–2026"],
+  ["참여 이력", String(projects.length)],
+  ["연구 과제", "38"],
+  ["참여 기간", "2016–2027"],
 ];
 
 const fold = (value: string) => value.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase().replace(/\s+/g, "");
@@ -58,8 +58,8 @@ export default function ProjectsPage() {
         <div>
           <div className="proj-tools">
             <div className="filters" role="group" aria-label="과정별 보기" style={{ margin: 0 }}>
-              <button className="chip" type="button" aria-pressed={stage === null} onClick={() => setStage(null)}>전체 <b>55</b></button>
-              {groups.map(group => <button className="chip" key={group.id} type="button" aria-pressed={stage === group.id} onClick={() => setStage(stage === group.id ? null : group.id)}>{group.label} <b>{group.count}</b></button>)}
+              <button className="chip" type="button" aria-pressed={stage === null} onClick={() => setStage(null)}>전체 <b>{projects.length}</b></button>
+              {groups.map(group => <button className="chip" key={group.id} type="button" aria-pressed={stage === group.id} onClick={() => setStage(stage === group.id ? null : group.id)}>{group.label} <b>{projects.filter(project => project.stage.startsWith(group.match)).length}</b></button>)}
             </div>
             <div className="field">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5" /><path d="m16 16 5 5" /></svg>

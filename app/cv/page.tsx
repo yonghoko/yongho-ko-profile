@@ -7,6 +7,7 @@ import { SectionNav, type CvSection } from "./section-nav";
 import { journals, journalQuartiles, type Publication } from "./publication-data";
 import { countLeadPublications } from "./publication-stats";
 import { selectedProjects as projects } from "../projects/selected-projects";
+import { projects as allProjects } from "../../data/projects";
 
 const conferences: Publication[] = [
   { year:"2025", role:"Co-author", title:"Formal Verification of Consumer Remote SIM Provisioning Common Mutual Authentication Using BAN Logic", venue:"IEEE ICCT-Pacific", href:"https://doi.org/10.1109/ICCT-Pacific63901.2025.11012784" },
@@ -17,7 +18,7 @@ const conferences: Publication[] = [
 const metrics: [string, string][] = [
   [String(journals.length), "SCI Journal Articles"],
   ["3", "SCOPUS Papers"],
-  ["55", "Research Projects"],
+  [String(allProjects.length), "Research Projects"],
   ["3", "Granted Patents"],
   ["1", "Standard"],
 ];
