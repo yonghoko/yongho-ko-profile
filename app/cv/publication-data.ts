@@ -1,6 +1,7 @@
-export type Publication = { year: string; title: string; venue: string; role: string; href: string };
+export type Publication = { year: string; title: string; venue: string; role: string; href: string; quartile?: string };
 
 export const journals: Publication[] = [
+  { year:"2026", role:"First Author", title:"Toward Privacy-Preserving 6G Authentication: A Linkability Analysis of EAP-AKA' and Its FS/PQC/HPQC Extensions", venue:"IEICE Transactions on Information and Systems, Early Access", href:"", quartile:"Q4" },
   { year:"2026", role:"First Author", title:"5G-AKA-HPQC: Hybrid Postquantum Cryptography Protocol for Quantum-Resilient 5G Primary Authentication With Forward Secrecy", venue:"IEEE Internet of Things Journal, 13(12), 26977–27000", href:"https://doi.org/10.1109/JIOT.2026.3678536" },
   { year:"2026", role:"First Author", title:"Toward a Stealth-Capable 5G-AKA: Secure Key Distribution With Covert Channel Integration for Future-Sensitive Military Applications", venue:"IEEE Transactions on Consumer Electronics, 72(3), 6214–6226, August", href:"https://doi.org/10.1109/TCE.2026.3686773" },
   { year:"2026", role:"First Author", title:"Inside 5G IoT Remote SIM Provisioning: Security Gaps and Efficiency Trade-offs", venue:"IEEE Consumer Electronics Magazine, Early Access", href:"https://doi.org/10.1109/MCE.2026.3723065" },
@@ -39,3 +40,5 @@ export const journalQuartiles: Record<string, "Q1" | "Q2" | "Q3" | "Q4" | "Q1 To
   "https://doi.org/10.3966/160792642020012101021": "Q3",
   "https://doi.org/10.1109/ACCESS.2018.2856368": "Q2",
 };
+
+export const underReviewJournalCount = 7;

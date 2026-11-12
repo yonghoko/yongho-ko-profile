@@ -4,7 +4,7 @@ import { selectedConferencePublications } from "../../data/conference-publicatio
 import { JournalArticles, PublicationItem, type JournalArticle } from "./publication-list";
 import { SectionNav, type CvSection } from "./section-nav";
 
-import { journals, journalQuartiles, type Publication } from "./publication-data";
+import { journals, journalQuartiles, underReviewJournalCount, type Publication } from "./publication-data";
 import { countLeadPublications } from "./publication-stats";
 import { selectedProjects as projects } from "../projects/selected-projects";
 import { projects as allProjects } from "../../data/projects";
@@ -46,7 +46,7 @@ const sections: CvSection[] = [
 
 const assetPrefix = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
 
-const journalArticles: JournalArticle[] = journals.map(item => ({ ...item, quartile: journalQuartiles[item.href] }));
+const journalArticles: JournalArticle[] = journals.map(item => ({ ...item, quartile: item.quartile ?? journalQuartiles[item.href] }));
 
 export default function Home() {
   return <main id="top">
@@ -108,7 +108,7 @@ export default function Home() {
 
           <section className="cv-sec" id="publications"><h2>SCI Journal Articles <small><a className="ext" href="https://scholar.google.co.kr/citations?user=dybtsxwAAAAJ" target="_blank" rel="noreferrer">Google Scholar에서 전체 보기</a></small></h2>
             <JournalArticles items={journalArticles} />
-            <p className="under-review"><span>UNDER REVIEW</span> SCI(E) 논문 8편 심사 중</p>
+            <p className="under-review"><span>UNDER REVIEW</span> SCI(E) 논문 {underReviewJournalCount}편 심사 중</p>
           </section>
 
           <section className="cv-sec" id="scopus"><h2>SCOPUS Papers</h2>

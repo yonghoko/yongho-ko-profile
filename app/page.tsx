@@ -77,7 +77,7 @@ export default function Home() {
 
     <section className="split wrap" aria-labelledby="papers-h">
       <div className="split-head"><h2 id="papers-h">대표 논문<span className="serif" lang="en">Selected papers</span></h2><p>주저자 논문 {countLeadPublications(journals)}편 중 주요 연구 {selectedPapers.length}편을 소개합니다.</p><p>주저자: 제1저자 또는 교신저자</p></div>
-      <div><ol className="pubs">{selectedPapers.map(item => <PublicationItem key={item.href} item={{...item, quartile:journalQuartiles[item.href]}} />)}</ol><p style={{margin:"22px 0 0"}}><Link className="more" href="/cv#publications">SCI {journals.length}편 전체와 SCOPUS 논문 보기 →</Link></p></div>
+      <div><ol className="pubs">{selectedPapers.map(item => <PublicationItem key={item.href} item={{...item, quartile:journalQuartiles[item.href]}} />)}</ol><p style={{margin:"22px 0 0"}}><Link className="more" href="/cv#publications">전체 SCI 및 SCOPUS 논문 보기 →</Link></p></div>
     </section>
 
     <section className="split wrap" aria-labelledby="projects-h">

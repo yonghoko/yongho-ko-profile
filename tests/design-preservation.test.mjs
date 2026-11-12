@@ -43,9 +43,9 @@ function escapeText(text) {
 test("lead-author totals include first and corresponding authors without double counting", () => {
   const { journals } = loadModule("app/cv/publication-data.ts");
   const { countLeadPublications, isLeadAuthor } = loadModule("app/cv/publication-stats.ts");
-  assert.equal(journals.length, 17);
-  assert.equal(countLeadPublications(journals), 8);
-  assert.equal(journals.filter(item => item.role === "First Author").length, 7);
+  assert.equal(journals.length, 18);
+  assert.equal(countLeadPublications(journals), 9);
+  assert.equal(journals.filter(item => item.role === "First Author").length, 8);
   assert.equal(journals.filter(item => item.role === "Corresponding Author").length, 1);
   assert.equal(isLeadAuthor({ role: "First Author & Corresponding Author" }), true);
   assert.equal(isLeadAuthor({ role: "Co-author" }), false);
@@ -54,15 +54,15 @@ test("lead-author totals include first and corresponding authors without double 
   ]), 1);
   const CV = loadModule("app/cv/page.tsx").default;
   const html = renderToStaticMarkup(React.createElement(CV));
-  assert.ok(html.includes("주저자 8편"));
-  assert.ok(html.includes("주저자 <b>8</b>"));
+  assert.ok(html.includes("주저자 9편"));
+  assert.ok(html.includes("주저자 <b>9</b>"));
   assert.ok(html.includes("Corresponding Author"));
 });
 
 test("home preserves B timeline, contacts, research references and all seven 2026 projects", () => {
   const Home = loadModule("app/page.tsx").default;
   const html = renderToStaticMarkup(React.createElement(Home));
-  assert.ok(html.includes("주저자 논문 8편 중 주요 연구 4편을 소개합니다."));
+  assert.ok(html.includes("주저자 논문 9편 중 주요 연구 4편을 소개합니다."));
   assert.ok(!html.includes("SCI 저널 논문 17편 가운데 제1저자 논문 4편."));
   const timeline = html.match(/<ol class="path">([\s\S]*?)<\/ol>/)?.[1];
   assert.ok(timeline);
@@ -237,4 +237,36 @@ test("CV retains all selected conference records and the full archive route", ()
   for (const pdf of ["/theses/espmu-efficient-security-protocol-military-uav.pdf", "/papers/internet-router-firmware-update-vulnerability-analysis.pdf", "/papers/lightweight-authentication-protocol-for-implantable-medical-devices.pdf"]) {
     assert.ok(html.includes(`href="${pdf}"`), `Missing PDF link: ${pdf}`);
   }
+});
+
+test("IEICE uses the existing journal format without private payment or submission metadata", () => {
+  const { journals, underReviewJournalCount } = loadModule("app/cv/publication-data.ts");
+  assert.equal(journals.length, 18);
+  assert.equal(underReviewJournalCount, 7);
+  const item = journals.find(item => item.venue.startsWith("IEICE Transactions"));
+  assert.ok(item);
+  assert.equal(item.venue, "IEICE Transactions on Information and Systems, Early Access");
+  assert.equal(item.role, "First Author");
+  assert.equal(item.quartile, "Q4");
+  assert.equal(item.href, "");
+  assert.deepEqual(Object.keys(item).sort(), ["href", "quartile", "role", "title", "venue", "year"]);
+  for (const pagePath of ["app/page.tsx", "app/cv/page.tsx"]) {
+    const Page = loadModule(pagePath).default;
+    const html = renderToStaticMarkup(React.createElement(Page));
+    for (const forbidden of ["APC", "납부", "paymentStatus", "mail.google.com", "payment_method_e.aspx", "accepted-publications", "게재 완료 논문 수와 구분", "채택 통지", "평가 2026", "Early Access 예정"]) {
+      assert.ok(!html.includes(forbidden), pagePath + " exposes " + forbidden);
+    }
+  }
+  const { PublicationItem } = loadModule("app/cv/publication-list.tsx");
+  const record = renderToStaticMarkup(React.createElement(PublicationItem, {item}));
+  assert.ok(record.includes('<li class="pub">'));
+  assert.ok(record.includes('<h3>' + escapeText(item.title) + '</h3>'));
+  assert.ok(!record.includes('<a '));
+  assert.ok(record.includes('quartile-badge'));
+  const CV = loadModule("app/cv/page.tsx").default;
+  const html = renderToStaticMarkup(React.createElement(CV));
+  const journalsSection = html.match(/<section class="cv-sec" id="publications">([\s\S]*?)<\/section>/)?.[1];
+  assert.ok(journalsSection.includes(record));
+  assert.equal(html.split(escapeText(item.title)).length - 1, 1);
+  assert.ok(html.includes("SCI(E) 논문 7편 심사 중"));
 });

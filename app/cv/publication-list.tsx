@@ -10,7 +10,7 @@ export function PublicationItem({ item }: { item: JournalArticle }) {
   return <li className="pub">
     <span className="pub-year">{item.year}</span>
     <div>
-      <h3><a href={item.href} target="_blank" rel="noreferrer">{item.title}</a></h3>
+      <h3>{item.href ? <a href={item.href} target="_blank" rel="noreferrer">{item.title}</a> : item.title}</h3>
       <p className="pub-venue">{item.venue}</p>
       <span className="badges">
         <span className={`role${isLeadAuthor(item) ? " first-author" : ""}`}>{item.role}</span>
